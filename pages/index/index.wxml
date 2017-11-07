@@ -1,0 +1,111 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="index_hd">
+    <view class="text"><image mode="widthFix" src="{{logo}}"></image></view>
+  </view>
+
+  <view class="index_nav">
+    <view data-id='0'class="flex-wrap {{id==0?'active':''}}" bindtap="navclick">评级排序</view>
+    <view data-id='1'class="flex-wrap {{id==1?'active':''}}" bindtap="navclick">收益排序</view>
+    <view data-id='2'class="flex-wrap {{id==2?'active':''}}" bindtap="navclick">期限排序</view>
+    <view class="shuxian"></view>
+    <view class="shuaixuan" bindtap='toggleDialogRight'>筛选</view>
+    <view class="shuaixuanicon" bindtap='toggleDialogRight'>
+      <image src="../../image/Group@2x.png"></image>
+    </view>
+  </view>
+
+
+
+  <view class="index_contents">
+    <navigator wx:for="{{company}}" wx:key="{{company}}" class="flex-wrap" url="../particulars/particulars?id={{item.id}}">
+      <view class="flex-hd">
+        <view>发行人 : {{item.company}}
+        <text wx:if="{{item.company_type!=''}}">{{item.company_type}}</text></view>
+        <image src="../../image/dingwei@2x.png"></image>
+        <text>{{item.region}}</text>
+      </view>
+      <view class="flex-content">
+        <view class="flex-left">
+          <view class="flex">
+            <view>评级</view>
+            <view>{{item.rate}}</view>
+          </view>
+          <view class="flex">
+            <view>收益</view>
+            <view>{{item.interest}}</view>
+          </view>
+        </view>
+        <view class="flex-right">
+          <view class="flex">
+            <image mode='widthFix' src="../../image/money@2x.png"></image>
+            <text>总额度{{item.money}}</text>
+          </view>
+          <view class="flex">
+            <image mode='widthFix' src="../../image/rili@2x.png"></image>
+            <text>期限{{item.limit}}</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+
+
+  <view class="free-dialog {{ showDialogRight ? 'free-masklayer-show-right' : '' }}">
+    <view class="free-masklayer" bindtap="toggleDialogRight" />
+    <form bindsubmit="formSubmit" bindreset="reset">
+      <scroll-view scroll-y  class="free-dialog-content-right">
+            <view class="free-panel-title">请选择所在区域</view>
+            <radio-group name="chengshi" class='free-radios' bindchange="regionChange">
+              <label class="free-radio-city" bindtap="regionclick" wx:for="{{region}}" 
+              wx:key="{{region}}" data-regionnum="{{index}}" 
+              style="{{index==regionnum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <radio value="{{item.id}}"></radio>
+                <label class="free-text">{{item.name}}</label>
+                <image style="{{index==regionnum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+              </label>
+            </radio-group>
+
+            <view class="free-panel-title">债券评级</view>
+            <radio-group name="pingji" class='free-radios' bindchange="pingjiChange">
+              <label class="free-radio" bindtap="rateclick" wx:for="{{rate}}" 
+              wx:key="{{rate}}" data-ratenum="{{index}}" 
+              style="{{index==ratenum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <radio value="{{item.id}}"></radio>
+                <label class="free-text">{{item.name}}</label>
+                <image style="{{index==ratenum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+              </label>
+            </radio-group>
+
+
+            <view class="free-panel-title">收益</view>
+            <radio-group name="shouyi" class='free-radios' bindchange="shouyiChange">
+              <label class="free-radio" bindtap="earningsclick" wx:for="{{earnings}}" 
+              wx:key="{{earnings}}" data-earningsnum="{{index}}" 
+              style="{{index==earningsnum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <radio value="{{item.id}}"></radio>
+                <label class="free-text">{{item.name}}</label>
+                <image style="{{index==earningsnum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+              </label>
+            </radio-group>
+
+
+            <view class="free-panel-title">期限</view>
+            <radio-group name="qixian" class='last-free-radios' bindchange="qixianChange">
+              <label class="free-radio" bindtap="limitclick" wx:for="{{limit}}" 
+              wx:key="{{limit}}" data-limitnum="{{index}}" 
+              style="{{index==limitnum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <radio value="{{item.id}}"></radio>
+                <label class="free-text">{{item.name}}</label>
+                <image style="{{index==limitnum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+              </label>
+            </radio-group>
+      <view class="free-pickerRight-buttons">
+        <button formType="reset" bindtap='freetoBackRight' class="free-buttonRight free-dialog-reset">取消</button>
+        <button formType="submit" indtap='freeBackRight' class="free-buttonRight free-dialog-submit">确定</button>
+      </view>
+      </scroll-view>
+    </form>
+  </view>
+</view>

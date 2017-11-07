@@ -1,0 +1,120 @@
+/* pages/personal/personal.wxss */
+.personal_hd{
+  width:100%;
+  height:100px;
+  background:#fff;
+  display:flex;
+  flex-flow: row;
+}
+.personal_hd .hd_img{
+  width:70px;
+  height:70px;
+  background: #D8D8D8;
+  margin:15px 19px 15px 10px;
+}
+.personal_hd .hd_img image{
+  width:70px;
+  height:70px;
+}
+.hd_contents{
+  width:100%;
+  height:54px;
+  margin:23px 0px;
+}
+.hd_contents .hd_texts{
+  display: flex;
+  flex-flow: row;
+}
+.hd_contents .hd_texts text{
+  display:inline-block;
+}
+.hd_contents .hd_texts .image{
+  display:inline-block;
+  width:25px;
+  margin-left:10px;
+  margin-right: 3px
+}
+.hd_contents .hd_texts .image image{
+  display:inline-block;
+  width:25px;
+  height:11px;
+}
+.hd_contents .hd_texts text:nth-child(2){
+  width:25px;
+  height:11px;
+  margin-top:8px;
+  font-size: 9px;
+  margin-left:5px;
+  background-image: linear-gradient(-180deg, #E9C53C 0%, #CDB05D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hd_contents .hd_texts text:nth-child(3){
+  font-size: 9px;
+  width:37px;
+  padding:0px 3px;
+  text-align: center;
+  height:13px;
+  line-height: 13px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  margin-left:3px;
+  margin-top:8px;
+  background-image: linear-gradient(-180deg, #E9C53C 0%, #CDB05D 100%);
+}
+.hd_contents .hd_texts text:nth-child(1),.hd_tel{
+  font-size: 18px;
+  color: #272727;
+  letter-spacing: 0;
+}
+
+/*内容*/
+.personal_contents{
+  width:100%;
+  margin-top:11px;
+}
+.personal_contents .flex-wrap{
+  width:100%;
+  height:45px;
+  display: flex;
+  flex-flow: row;
+  position: relative;
+  margin-bottom:1px;
+  background:#fff;
+}
+.personal_contents .flex-wrap image{
+  display: inline-block;
+  width:13px;
+  height:13px;
+  margin:16px 15px 16px 12px;
+}
+.personal_contents .flex-wrap .text{
+  width:70px;
+  height:20px;
+  margin-top:13px;
+  font-size: 14px;
+  color: #272727;
+  letter-spacing: 0;
+}
+.righticon{
+  position: absolute;
+  right: 13.2px;
+  top: 17.2px;
+  width: 8px;
+  height: 8px;
+  border-width: 1px 1px 0 0;
+  border-color: #7E899D;
+  border-style: solid;
+  transform: rotate(45deg);
+}
+
+/*退出登录*/
+.personal_footer{
+  width:100%;
+  font-size: 14px;
+  margin-top:81px;
+  text-align: center;
+  padding:13px 0;
+  background:#fff;
+  color:#CDB05D;
+}

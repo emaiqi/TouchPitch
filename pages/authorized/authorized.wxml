@@ -1,0 +1,81 @@
+<!--pages/authorized/authorized.wxml-->
+<view class="container">
+  <view class="particular-top">
+    <view class="flex-hd">
+      <view>发行人 : ****有限公司<text>国企</text></view>
+      <view class="bottom-right">发行日期：2017/03/09</view>
+    </view>
+    <view class="top-content">
+      <view class="flex-left">
+        <view class="flex">
+          <view>收益<text>按年付息</text></view>
+          <view>7.5<text>%</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="particular-content">
+    <view class="flex-wrap">
+      <view class="flex-top">风控措施</view>
+      <view class="flex-content">
+        Specify the distance between the cursor and the keyboard, unit px. Take the distance from the bottom of the textarea and the minimum distance specified by cursor-spacing as the distance between the cursor and the keyboard as the distance between the cursor and the keyboard, unit px. Take the distance from the bottom 
+      </view>
+    </view>
+     <view class="flex-wrap">
+      <view class="flex-top">发行人简介</view>
+      <view class="flex-img"><image></image></view>
+      <view class="flex-content">
+        Specify the distance between the cursor and the keyboard, unit px. Take the distance from the bottom of the textarea and the minimum distance specified by cursor-spacing as the distance between the cursor and the keyboard as the distance between the cursor and the keyboard, unit px. Take the distance from the bottom 
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-left">
+      <view class="left-wrap">
+        <image src="../../image/call@2x.png"></image>
+        <text>电话咨询</text>
+      </view>
+      <view class="left-wrap">
+        <image src="../../image/call@2x.png"></image>
+        <text>电话咨询</text>
+      </view>
+      <view class="left-wrap">
+        <image src="../../image/call@2x.png"></image>
+        <text>电话咨询</text>
+      </view>
+    </view>
+    <view class="footer-right" bindtap="toggleToast">提交认购意向</view>
+  </view>
+</view>
+
+<!--弹窗-->
+<view class="free-toast {{showToast?'free-masklayer-show':''}}">
+     <view class="free-masklayer"/>
+     <view class="free-toast-contents">
+        <view class="free-toast-content">
+          <form>
+            <view class="form-flex">
+              <label>认购主体：</label>
+              <text>中国银行深圳分行</text>
+            </view>
+            <view class="form-flex">
+              <label>联系人姓名：</label>
+              <text>温**</text>
+            </view>
+            <view class="form-flex">
+              <label>联系人电话：</label>
+              <text>159****7004</text>
+            </view>
+            <view class="form-flex">
+              <label>认购金额：</label>
+              <text class="god">10</text><text>亿元</text>
+            </view>
+          </form>
+        </view>
+        <view class="free-toast-buttons">
+          <view bindtap='freetoBackRight' class="free-buttonRight free-toast-reset">取消</view>
+          <view bindtap='freeBackRight' class="free-buttonRight free-toast-submit">确认提交</view>
+        </view>
+     </view>
+</view>

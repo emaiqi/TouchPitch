@@ -1,0 +1,32 @@
+<!--pages/personal/personal.wxml-->
+<view class="container">
+  <view class="personal_hd">
+    <view class="hd_img">
+      <image wx:if="{{userInfo.avatar}}" src="{{userInfo.avatar}}"></image>
+    </view>
+    <view class="hd_contents">
+      <view class="hd_texts">
+        <text>{{userInfo.nickName}}</text>
+        <view class="image"><image src="../../image/vip@2x.png"></image></view>
+        <text>投资机构</text>
+      </view>
+      <view class="hd_tel">
+        <text>{{userInfo.phone}}</text>
+      </view>
+    </view>
+  </view>
+  
+
+  <view class="personal_contents">
+    <navigator class="flex-wrap" wx:for="{{list}}" wx:key="{{list}}" url="{{item.url}}">
+      <image src="{{item.src}}"></image>
+      <view class="text">{{item.name}}</view>
+      <view class="righticon"></view>
+    </navigator>
+  </view>
+
+
+  <view class="personal_footer">
+    退出登录
+  </view>
+</view>

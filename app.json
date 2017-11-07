@@ -1,0 +1,47 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/personal/personal",
+    "pages/release/release",
+    "pages/About/About",
+    "pages/authorized/authorized",
+    "pages/unauthorized/unauthorized",
+    "pages/BusinessCard/BusinessCard",
+    "pages/CorporateBonds/CorporateBonds",
+    "pages/particulars/particulars",
+    "pages/release2/release2"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "碰投",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "image/tabBar/home_moren@2x.png",
+        "selectedIconPath": "image/tabBar/home@2x.png"
+      },
+      {
+        "pagePath": "pages/release/release",
+        "text": "发布",
+        "iconPath": "image/tabBar/fabu_moren@2x.png",
+        "selectedIconPath": "image/tabBar/fabu@2x.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "image/tabBar/my_moren@2x.png",
+        "selectedIconPath": "image/tabBar/my@2x.png"
+      }
+    ],
+    "color": "#A5B1C7",
+    "selectedColor": "#42528D"
+  }
+  
+
+}

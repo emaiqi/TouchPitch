@@ -1,0 +1,316 @@
+/**index.wxss**/
+.index_hd{
+  width:100%;
+  height:191px;
+  position: absolute;
+  top:0px;
+  background-image: linear-gradient(226deg, #3D2657 0%, #08214C 100%);
+}
+
+.index_hd .text image{
+  width:100%;
+  margin-top:50px;
+}
+/*导航*/
+.index_nav{
+  width:100%;
+  height:50px;
+  margin-top:192px;
+  background:#fff;
+  display: flex;
+  flex-flow: row;
+}
+.index_nav .flex-wrap{
+  width:20%;
+  margin-top:15px;
+  margin-right:5%;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #7E899D;
+  letter-spacing: 0;
+}
+.index_nav .active{
+  color:#CDB05D;
+  border-bottom: 2px solid  #CDB05D; 
+}
+.shuxian{
+  width:0.8%;
+  border-right: 1px solid #f3f3f3;
+}
+.index_nav .flex-wrap:nth-child(1){
+  margin-left:5%;
+}
+.index_nav .flex-wrap:nth-child(3){
+  margin-right:4%;
+}
+/*筛选*/
+.shuaixuan{
+  width:10%;
+  height:20px;
+  margin-top:15px;
+  margin-left:2%;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #7E899D;
+  letter-spacing: 0;
+}
+.shuaixuanicon{
+  width:5%;
+  height:14.4px;
+  margin-left:1%;
+  margin-top:15px;
+}
+.shuaixuanicon image{
+  width:100%;
+  height:100%;
+}
+
+
+/*内容*/
+.index_contents{
+  width:100%;
+  margin-top:10px;
+}
+.index_contents .flex-wrap{
+  width:100%;
+  background: #fff;
+  margin-bottom:2px;
+}
+.index_contents .flex-wrap .flex-hd{
+  width:100%;
+  height:40px;
+  display: flex;
+  flex-flow: row;
+}
+.index_contents .flex-wrap .flex-hd>view:nth-child(1){
+  width:50%;
+  margin-top:12px;
+  margin-left:5.3%;
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #272727;
+  letter-spacing: 0;
+}
+.index_contents .flex-wrap .flex-hd view>text{
+  background: #5A8DCC;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+}
+.index_contents .flex-wrap .flex-hd image{
+  width:9px;
+  display: inline-block;
+  height:11.3px;
+  margin-top:13.7px;
+  margin-left:28%;
+}
+.index_contents .flex-wrap .flex-hd>text{
+  font-family: PingFangSC-Medium;
+  font-size: 12px;
+  color: #CDB05D;
+  letter-spacing: 0;
+  margin-top:10px;
+  margin-left:3px;
+}
+
+.index_contents .flex-content{
+  width:100%;
+  height:70px;
+  padding-top:7px;
+  display: flex;
+  flex-flow: row;
+}
+.index_contents .flex-content .flex-left{
+  width:60%;
+  display: flex;
+  flex-flow: row;
+}
+.index_contents .flex-content .flex-left .flex:nth-child(1){
+  margin-left:18%;
+}
+.index_contents .flex-content .flex-left .flex:nth-child(2){
+  margin-left:7%;
+}
+.index_contents .flex-content .flex-left .flex>view:nth-child(1){
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #A2A2A2;
+  letter-spacing: 0;
+  margin-bottom:2px;
+}
+.index_contents .flex-content .flex-left .flex>view:nth-child(2){
+  font-family: Helvetica;
+  font-size: 28px;
+  color: #272727;
+  letter-spacing: 0;
+}
+.index_contents .flex-content .flex-left .flex view>text{
+  display: inline-block;
+  font-family: Helvetica;
+  font-size: 11px;
+  color: #272727;
+  letter-spacing: 0;
+  margin-left:2px;
+}
+.index_contents .flex-content .flex-right{
+  width:39%;
+  height:46px;
+  display: flex;
+  flex-flow: column;
+  border-left:1px solid #E4E4E4;
+}
+.index_contents .flex-content .flex-right .flex{
+  width:100%;
+}
+.index_contents .flex-content .flex-right .flex image{
+  width:13px;
+  height:13px;
+  display: inline-block;
+  margin-left:15%;
+  margin-right:10%;
+}
+.index_contents .flex-content .flex-right .flex text{
+  width:73px;
+  height:20px;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #7E899D;
+  letter-spacing: 0;
+}
+
+
+
+
+/*侧面picker*/
+.free-panel-title{
+  height:17px;
+  margin-left:1px;
+  margin-bottom:13px;
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #939393;
+  letter-spacing: 0;
+}
+.free-masklayer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0,0,0,0.50);
+  display: none;
+}
+.free-dialog-content {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  transform: translateY(150%);
+  transition: all 0.4s ease;
+  z-index: 11;
+}
+.free-masklayer-show .free-dialog-content {
+  transform: translateY(0);
+}
+.free-masklayer-show .free-masklayer{
+  display: block;
+}
+/*模态框中的内容*/
+radio-group{
+  margin:10rpx 0rpx;
+}
+.last-free-radios{
+  margin-bottom:40px;
+}
+radio-group>label{
+  width:66px;
+  padding:6px 0;
+  display: inline-block;
+  background: red;
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #484848;
+  margin-right: 13px;
+  letter-spacing: 0;
+  margin-bottom:10px;
+  position: relative;
+}
+radio-group label image{
+  width:11.8px;height:9.9px;
+  position: absolute;
+  right: 0;top:0;
+  display: inline-block;
+}
+radio-group label radio{
+  width:100%;
+  z-index: 3;
+  display: none;
+  background: #E8E6E6;
+}
+radio-group label .free-text{
+  width:100%;
+  text-align: center;
+  display: inline-block;
+}
+
+/*picker内容*/
+.free-dialog-content-right{
+  position: fixed;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  width: 240px;
+  background: white;
+  transform: translateX(150%);
+  transition: all 0.4s ease;
+  z-index: 11;
+  padding-left:8px;
+}
+.free-masklayer-show-right .free-dialog-content-right {
+  transform: translateX(0);
+}
+.free-masklayer-show-right .free-masklayer {
+  display: block;
+}
+.free-pickerRight-buttons{
+  width:100%;
+  height:40px;
+  position:fixed;
+  bottom:0px;
+  left:0;
+}
+.free-pickerRight-buttons>button{
+  display: inline-block;
+  width:50%;
+  text-align: center;
+  border-radius: 0px;
+}
+.free-pickerRight-buttons>button::after{
+  border:none !important;
+  border-radius: 0px
+}
+.free-pickerRight-buttons>button:nth-child(1){
+  height:40px;
+  line-height: 40px;
+  background: #FFFFFF;
+  border-top: 1px solid #CCCCCC;
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #CDB05D;
+  letter-spacing: 0;
+}
+.free-pickerRight-buttons>button:nth-child(2){
+  height:40px;
+  line-height: 40px;
+  background: #CDB05D;
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}

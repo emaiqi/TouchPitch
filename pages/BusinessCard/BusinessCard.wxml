@@ -1,0 +1,41 @@
+<!--pages/BusinessCard/BusinessCard.wxml-->
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="card-head">
+    <view class="flex-wrap">
+      <image src="../../image/name@2x.png"></image>
+      <input name="name" value="{{mycard.name}}" placeholder='请输入姓名' placeholder-style='color:#d4d4d4;'></input>
+      <view wx:if="{{mycard.status==1}}" class="wsx2">
+          <image class="wsxedc" style="width:25px;height:10px;margin:18.5px 5px 0;" src="../../image/vip@2x.png"></image>
+          <text class="qazwsx">投资机构</text>
+      </view>
+      <view wx:if="{{mycard.status==2}}" class="wsx" style="color:red;font-size:14px;">审核中...</view>
+    </view>
+    <view class="flex-wrap">
+      <image src="../../image/phone@2x.png"></image>
+      <input type="number" name="phone" value="{{mycard.phone}}" placeholder='请输入手机号' placeholder-style='color:#d4d4d4;'></input>
+    </view>
+    <view class="flex-wrap">
+      <image src="../../image/com@2x.png"></image>
+      <input name="company" value="{{mycard.company}}" placeholder='请输入公司名称' placeholder-style='color:#d4d4d4;'></input>
+    </view>
+    <view class="flex-wrap">
+      <image src="../../image/zhiwei@2x.png"></image>
+      <input name="job" value="{{mycard.job}}" placeholder='请输入职位名称' placeholder-style='color:#d4d4d4;'></input>
+    </view>
+    <view class="flex-wrap">
+      <image src="../../image/email@2x.png"></image>
+      <input type="email" value="{{mycard.email}}" name="email" placeholder='请输入您的邮箱' placeholder-style='color:#d4d4d4;'></input>
+    </view>
+  </view>
+
+  <textarea name="brief" value="{{mycard.brief}}" placeholder='介绍 （选填）：请填写1-100个字介绍，让朋友更了解你' class="jieshao"
+  placeholder-style='color:#7E899D;'/>
+
+    <view class="shangchuan" bindtap="xuanzetupian">
+    <image style="width:100%;height:100%;" src="{{tempFilePaths}}"></image>
+    </view>
+
+  <button formType='submit' bindtap="dianji" class="fabu">保存</button>
+  </form>
+</view>
