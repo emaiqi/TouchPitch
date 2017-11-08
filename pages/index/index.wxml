@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="index_hd">
-    <view class="text"><image mode="widthFix" src="{{logo}}"></image></view>
+    <view class="text"><image mode="widthFix" src="../../image/logo.jpg"></image></view>
   </view>
 
   <view class="index_nav">

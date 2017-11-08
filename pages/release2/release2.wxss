@@ -20,25 +20,23 @@
 }
 .flex-wrap1 .flex-wrap label{
   width:40%;
-  height:20px;
+  height:45px;
   line-height: 45px;
   margin-left:10px;
-  margin-right:10%;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #7E899D;
   letter-spacing: 0;
 }
 .flex-wrap1 .flex-wrap input{
-  width:50%;
+  width:60%;
   height:45px;
-  padding-right:5%;
   line-height: 45px;
+  text-align: right;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #272727;
   letter-spacing: 0;
-  text-align: right;
 }
 .flex-wrap1 .flex-wrap picker{
   width:50%;
