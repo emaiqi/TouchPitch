@@ -1,22 +1,23 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/personal/personal",
-    "pages/release/release",
-    "pages/About/About",
-    "pages/authorized/authorized",
     "pages/unauthorized/unauthorized",
     "pages/BusinessCard/BusinessCard",
-    "pages/CorporateBonds/CorporateBonds",
+    "pages/requirements/requirements",
+    "pages/personal/personal",
+    "pages/release/release",
     "pages/particulars/particulars",
+    "pages/About/About",
+    "pages/authorized/authorized",
+    "pages/CorporateBonds/CorporateBonds",
     "pages/release2/release2"
-
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "碰投",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "list": [

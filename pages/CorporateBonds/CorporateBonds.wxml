@@ -2,16 +2,18 @@
 <view class="container">
 
   <view class="index_contents">
-    <view style="{{company.length==0?'':'display:none;'}} font-size: 12px;color: #7E899D;margin-top:15%;text-align:center;">暂无公司债</view>
+    <view style="{{company.length==0?'':'display:none;'}} font-size: 12px;color: #7E899D;margin-top:15%;text-align:center;">
+    <image style="width:50px;display:block;margin:10% auto 20px;" mode="widthFix" src="../../image/zhanwujieguo.png"></image>
+    暂无公司债</view>
     <navigator wx:for="{{company}}" wx:key="{{company}}" class="flex-wrap"
     url="../release/release?id={{item.id}}">
       <view class="flex-hd">
         <view>发行人 : {{item.company}}
         <text wx:if="{{item.company_type!=''}}">{{item.company_type}}</text>
-      
+        <text wx:if="{{item.funds_type!=''}}" class="{{item.funds_type=='私募债'?'redtext':'bluetext'}}">{{item.funds_type}}</text>
       </view>
         <image src="../../image/dingwei@2x.png"></image>
-        <text>深圳</text>
+        <text>{{item.region}}</text>
       </view>
       <view class="flex-content">
         <view class="flex-left">

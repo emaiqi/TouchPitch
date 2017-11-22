@@ -42,23 +42,6 @@ Page({
         })
       }
     })
-    if (app.globalData.funds_real != 1) {
-      wx.showModal({
-        title: '提示',
-        content: '您不是认证资金方，是否立即认证？',
-        success: function (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../unauthorized/unauthorized',
-            })
-          } else if (res.cancel) {
-            wx.switchTab({
-              url: '../index/index',
-            })
-          }
-        }
-      })
-    }
   },
 /**弹窗 */
   toggleToast: function () {
@@ -98,8 +81,17 @@ Page({
       showToast: !this.data.showToast
     })
   },
-
+  footerqueding:function(){
+    var that = this
+    that.setData({
+      show: false
+    })
+    wx.switchTab({
+      url: '../index/index',
+    })
+  },
   formSubmit:function(e){
+    var that = this
     console.log(e)
     var funds_id = wx.getStorageSync('funds_id');
     wx.request({
@@ -116,9 +108,8 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        wx.showModal({
-          title: '提示',
-          content: res.data.message,
+        that.setData({
+          show:true
         })
       }
     })

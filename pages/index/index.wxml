@@ -1,13 +1,31 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="index_hd">
-    <view class="text"><image mode="widthFix" src="../../image/logo.jpg"></image></view>
-  </view>
+<scroll-view style="height:{{height}};" scroll-y="true"
+   scroll-into-view="nav" class="page" bindscroll="scroll" bindscrolltolower="jiazai">
+  <swiper indicator-dots="{{indicatorDots}}" style="height:128px"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block>
+      <swiper-item>
+        <image src="{{logo}}" class="slide-image" style="width:100%;height:128px;"/>
+      </swiper-item>
+    </block>
+  </swiper>
 
-  <view class="index_nav">
-    <view data-id='0'class="flex-wrap {{id==0?'active':''}}" bindtap="navclick">评级排序</view>
-    <view data-id='1'class="flex-wrap {{id==1?'active':''}}" bindtap="navclick">收益排序</view>
-    <view data-id='2'class="flex-wrap {{id==2?'active':''}}" bindtap="navclick">期限排序</view>
+  <view id="{{scrollTop}}" class="index_nav">
+    <view data-id='0'class="flex-wrap {{id==0?'active':''}}" bindtap="navclick">
+    评级排序
+    <image wx:if="{{showjiantou!=''}}" src="../../image/xia.png"></image>
+    <image wx:if="{{showjiantou2!=''}}"  src="../../image/shang.png"></image>
+    </view>
+    <view data-id='1'class="flex-wrap {{id==1?'active':''}}" bindtap="navclick">
+    收益排序
+     <image wx:if="{{showjiantou3!=''}}" src="../../image/xia.png"></image>
+    <image wx:if="{{showjiantou4!=''}}" src="../../image/shang.png"></image>
+    </view>
+    <view data-id='2'class="flex-wrap {{id==2?'active':''}}" bindtap="navclick">
+    期限排序
+     <image wx:if="{{showjiantou5!=''}}" src="../../image/xia.png"></image>
+    <image wx:if="{{showjiantou6!=''}}" src="../../image/shang.png"></image>
+    </view>
     <view class="shuxian"></view>
     <view class="shuaixuan" bindtap='toggleDialogRight'>筛选</view>
     <view class="shuaixuanicon" bindtap='toggleDialogRight'>
@@ -18,10 +36,12 @@
 
 
   <view class="index_contents">
-    <navigator wx:for="{{company}}" wx:key="{{company}}" class="flex-wrap" url="../particulars/particulars?id={{item.id}}">
+    <view data-id="{{item.id}}" data-renzheng="{{item.funds_real}}" wx:for="{{company}}" wx:key="{{company}}" class="flex-wrap" bindtap="tiaozhuan">
       <view class="flex-hd">
         <view>发行人 : {{item.company}}
-        <text wx:if="{{item.company_type!=''}}">{{item.company_type}}</text></view>
+        <text wx:if="{{item.company_type!=''}}">{{item.company_type}}</text>
+        <text wx:if="{{item.funds_type!=''}}" class="{{item.funds_type=='私募债'?'redtext':'bluetext'}}">{{item.funds_type}}</text>
+        </view>
         <image src="../../image/dingwei@2x.png"></image>
         <text>{{item.region}}</text>
       </view>
@@ -47,65 +67,67 @@
           </view>
         </view>
       </view>
-    </navigator>
+    </view>
+
   </view>
-
-
-
-  <view class="free-dialog {{ showDialogRight ? 'free-masklayer-show-right' : '' }}">
+</scroll-view>
+  <view catchtouchmove="preventTouchMove" class="free-dialog {{ showDialogRight ? 'free-masklayer-show-right' : '' }}">
     <view class="free-masklayer" bindtap="toggleDialogRight" />
     <form bindsubmit="formSubmit" bindreset="reset">
-      <scroll-view scroll-y  class="free-dialog-content-right">
+      <scroll-view scroll-y  style='height:{{height}}px;border:1px solid #fff;padding-bottom:50px;'    class="free-dialog-content-right" >
+
+      <view class="flex-position">
             <view class="free-panel-title">请选择所在区域</view>
-            <radio-group name="chengshi" class='free-radios' bindchange="regionChange">
-              <label class="free-radio-city" bindtap="regionclick" wx:for="{{region}}" 
-              wx:key="{{region}}" data-regionnum="{{index}}" 
-              style="{{index==regionnum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
-                <radio value="{{item.id}}"></radio>
+            <checkbox-group name="chengshi" class='free-radios' bindchange="regionChange">
+              <label class="free-radio-city" wx:for="{{region}}" wx:key="{{region}}" wx:for-index="index" data-index="{{index}}" bindtap="click1"  style="{{item.check?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <checkbox value="{{item.id}}" checked="{{item.check}}"></checkbox>
                 <label class="free-text">{{item.name}}</label>
-                <image style="{{index==regionnum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+                <image style="{{item.check?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
               </label>
-            </radio-group>
+            </checkbox-group>
 
             <view class="free-panel-title">债券评级</view>
-            <radio-group name="pingji" class='free-radios' bindchange="pingjiChange">
-              <label class="free-radio" bindtap="rateclick" wx:for="{{rate}}" 
-              wx:key="{{rate}}" data-ratenum="{{index}}" 
-              style="{{index==ratenum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
-                <radio value="{{item.id}}"></radio>
+            <checkbox-group name="pingji" class='free-radios' bindchange="pingjiChange">
+              <label class="free-radio" wx:for="{{rate}}"  wx:key="{{rate}}" 
+              wx:for-index="index" data-index="{{index}}" bindtap="click2" 
+              style="{{item.check?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <checkbox value="{{item.id}}" checked="{{item.check}}"></checkbox>
                 <label class="free-text">{{item.name}}</label>
-                <image style="{{index==ratenum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+                <image style="{{item.check?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
               </label>
-            </radio-group>
+            </checkbox-group>
 
 
             <view class="free-panel-title">收益</view>
-            <radio-group name="shouyi" class='free-radios' bindchange="shouyiChange">
-              <label class="free-radio" bindtap="earningsclick" wx:for="{{earnings}}" 
-              wx:key="{{earnings}}" data-earningsnum="{{index}}" 
-              style="{{index==earningsnum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
-                <radio value="{{item.id}}"></radio>
+            <checkbox-group name="shouyi" class='free-radios' bindchange="shouyiChange">
+              <label class="free-radio" wx:for="{{earnings}}" wx:key="{{earnings}}"
+              wx:for-index="index" data-index="{{index}}" bindtap="click3"
+              style="{{item.check?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <checkbox value="{{item.id}}" checked="{{item.check}}"></checkbox>
                 <label class="free-text">{{item.name}}</label>
-                <image style="{{index==earningsnum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+                <image style="{{item.check?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
               </label>
-            </radio-group>
+            </checkbox-group>
 
 
             <view class="free-panel-title">期限</view>
-            <radio-group name="qixian" class='last-free-radios' bindchange="qixianChange">
-              <label class="free-radio" bindtap="limitclick" wx:for="{{limit}}" 
-              wx:key="{{limit}}" data-limitnum="{{index}}" 
-              style="{{index==limitnum?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
-                <radio value="{{item.id}}"></radio>
+            <checkbox-group name="qixian"  class='last-free-radios' bindchange="qixianChange">
+              <label class="free-radio" wx:for="{{limit}}" wx:key="{{limit}}"
+              wx:for-index="index" data-index="{{index}}" bindtap="click4"
+              style="{{item.check?'background: #FFE3E7;color: #484848;':'background:#E8E6E6; color:#484848;'}}">
+                <checkbox value="{{item.id}}"  checked="{{item.check}}"></checkbox>
                 <label class="free-text">{{item.name}}</label>
-                <image style="{{index==limitnum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
+                <image style="{{item.check?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
               </label>
-            </radio-group>
-      <view class="free-pickerRight-buttons">
-        <button formType="reset" bindtap='freetoBackRight' class="free-buttonRight free-dialog-reset">取消</button>
-        <button formType="submit" indtap='freeBackRight' class="free-buttonRight free-dialog-submit">确定</button>
+            </checkbox-group>
+
       </view>
       </scroll-view>
     </form>
   </view>
+
+
+<view class="free-pickerRight-buttons {{ showDialogRight ? 'free-masklayer-show-rightbutton' : '' }}">
+  <button bindtap='freetoBackRight' class="free-buttonRight free-dialog-reset">取消</button>
+  <button bindtap='freeBackRight' class="free-buttonRight free-dialog-submit">确定</button>
 </view>

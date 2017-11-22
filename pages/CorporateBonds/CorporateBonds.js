@@ -68,7 +68,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var that = this
+    wx.request({
+      url: app.globalData.my_funds,
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        user_id: app.globalData.user_id
+      },
+      success: res => {
+        wx.stopPullDownRefresh()
+        console.log(res)
+        that.setData({
+          company: res.data.data
+        })
+      }
+    })
   },
 
   /**

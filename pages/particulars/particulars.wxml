@@ -2,9 +2,11 @@
 <view class="container">
   <view class="particular-top">
     <view class="flex-hd">
-      <view>发行人 : {{xiangqing.company}}<text>{{xiangqing.funds_type}}</text></view>
+      <view>发行人 : {{xiangqing.company}}
+      <text wx:if="{{xiangqing.funds_type!=''}}">{{xiangqing.funds_type}}</text>
+      </view>
       <image src="../../image/dingwei@2x.png"></image>
-      <text>{{xiangqing.region}}</text>
+      <text> {{xiangqing.region}}</text>
     </view>
     <view class="top-content">
       <view class="flex-left">
@@ -22,7 +24,7 @@
         </view>
         <view class="flex">
           <view>总额度</view>
-          <view>{{xiangqing.money}}</view>
+          <view>{{xiangqing.money}}<text>亿</text></view>
         </view>
       </view>
       <view class="flex-bottom">
@@ -38,7 +40,7 @@
     </view>
      <view class="flex-wrap">
       <view class="flex-top">发行人简介</view>
-      <view class="flex-img"><image src="{{xiangqing.issuer_picurl}}"></image></view>
+      <view class="flex-img"><image src="{{xiangqing.card}}"></image></view>
       <view class="flex-content">{{xiangqing.issuer_brief}} </view>
     </view>
   </view>
@@ -72,7 +74,7 @@
             </view>
             <view class="form-flex qian">
               <label style="width:104px;">认购金额：</label>
-              <input name="money" class="god" style="color: #CDB05D;" placeholder='10'/><text>元</text>
+              <input name="money" class="god" style="color: #CDB05D;font-size:14px;" placeholder='请输入认购金额'/><text>元</text>
             </view>
         </view>
         <view class="free-toast-buttons">
@@ -83,5 +85,18 @@
      </view>
 </view>
 
+
+<!--弹窗-->
+<view class="free-toast {{show?'free-masklayer-show':''}}">
+     <view class="free-masklayer"/>
+     <view class="free-toast-contents">
+        <view class="footertop">提交成功</view>
+        <view class="footercontent">
+          <view>我公司将在24小时内联系人并确认额度</view>
+          <view>客服电话:<text>0755-28990605</text></view>
+        </view>
+        <view bindtap="footerqueding" class='footerqueren'>确认</view>
+     </view>
+</view>
 
 

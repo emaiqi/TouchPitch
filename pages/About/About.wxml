@@ -1,2 +1,51 @@
 <!--logs.wxml-->
-<view style="color:#707070;font-size:13px;text-align:center;margin-top:30px;">正在开发中...</view>
+<view class="container">
+<view class="header">
+  <view class='bg1'></view>
+  <view class='bg2'>
+    <view class='image'><image src="../../image/logo@2x.png"></image></view>
+    <view class="content">
+      掌龙金融成立于2011年，致力于为企业提供优质、全面、快捷的融资服务，公司通过创新形式及利用多年的融资经验和资源，结合企业的融资需求，为企业提供信用贷款、股票质押、融资租赁、商业保理、公司债等多种方式的融资服务，帮助企业解决融资急、融资贵、融资难的问题。
+    </view>
+  </view>
+</view>
+
+<view class="fenge">
+  <view></view>
+  <view>我们的使命</view>
+</view>
+<image class='shiming' src="../../image/shiming.png"></image>
+
+
+<view class="fenge">
+  <view></view>
+  <view>我们的优势</view>
+</view>
+<view class="flexs">
+  <view class="flex-wrap">
+    <image src="../../image/yinhang.png"></image>
+    <view class="jia">200家</view>
+    <view>合作银行</view>
+  </view>
+  <view class="flex-wrap">
+    <image src="../../image/xintuo.png"></image>
+    <view class="jia">60家</view>
+    <view>信托公司</view>
+  </view>
+  <view class="flex-wrap">
+    <image src="../../image/zulin.png"></image>
+    <view class="jia">100家</view>
+    <view>租赁公司</view>
+  </view>
+
+</view>
+
+  <view class="contents">
+    <view class="dian"><text></text></view>
+    <view class="flex-wrap">掌龙金融目前已于几百集金融合作机构取得了战略合作，涵盖了银行、信托、证券、基金及融资租赁等，设计各类融资产品100多种；</view>
+  </view>
+  <view class="contents">
+    <view class="dian"><text></text></view>
+    <view class="flex-wrap">掌龙金融的融资企业数据库已有上百家企业，目前累计帮助企业申请融资额已达到近百亿人民币规模。</view>
+  </view>
+</view>

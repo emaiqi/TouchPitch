@@ -1,18 +1,29 @@
 // pages/release/release.js
 const app = getApp()
 var util = require('../../utils/util.js')
+var interval = null //倒计时函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+	  disabled:false,
+    /**显示不显示 */
+    chengshiopen: 0,
+    zhouqiopen: 0,
+    zhaiquanpingjiopen: 0,
+    zhutipingjiopen: 0,
+    currentTime: 61,
+    bian: false,
+    yanzhengma: '发送验证码',//倒计时 
+
     value1:'请选择',
     value2:'请选择',
     value3:'请选择',
     value4: '选择公司所在地',
     showDialogRight: false,
-
+    tempFilePaths: '../../image/upload@3x.png',
     cityname:null,
     zhouqiname:null,
     tempFilePaths:null,
@@ -26,9 +37,49 @@ Page({
   /**侧面picker */
   toggleDialogRight() {
     this.setData({
-      showDialogRight: !this.data.showDialogRight
+      showDialogRight: !this.data.showDialogRight,
+      chengshiopen: 1,
+      zhouqiopen: 0,
+      zhaiquanpingjiopen: 0,
+      zhutipingjiopen: 0,
+      height: 100 + 'vh',
+	   disabled:true,
     });
   },
+  toggleDialogRight2() {
+    this.setData({
+      showDialogRight: !this.data.showDialogRight,
+      chengshiopen: 0,
+      zhouqiopen: 1,
+      zhaiquanpingjiopen: 0,
+      zhutipingjiopen: 0,
+      height: 100 + 'vh',
+	  disabled:true,
+    });
+  },
+  toggleDialogRight3() {
+    this.setData({
+      showDialogRight: !this.data.showDialogRight,
+      chengshiopen: false,
+      zhouqiopen: false,
+      zhaiquanpingjiopen: true,
+      zhutipingjiopen: false,
+      height: 100 + 'vh',
+	  disabled:true,
+    });
+  },
+  toggleDialogRight4() {
+    this.setData({
+      showDialogRight: !this.data.showDialogRight,
+      chengshiopen: false,
+      zhouqiopen: false,
+      zhaiquanpingjiopen: false,
+      zhutipingjiopen: true,
+      height: 100 + 'vh',
+	  disabled:true,
+    });
+  },
+
 
   /**城市选择 */
   regionChange: function (e) {
@@ -38,7 +89,12 @@ Page({
     that.setData({
       chengshi: e.detail.value
     })
-    console.log(this.data.chengshi)
+    var chengshishuzu = e.detail.value
+    var chengshi222 = chengshishuzu.split("+")
+    that.setData({
+      cityname: chengshi222[1],
+      region_id: chengshi222[0]
+    })
   },
   regionclick: function (e) {
     var id = e.currentTarget.dataset.regionnum
@@ -60,9 +116,16 @@ Page({
     })
   },
   pingjiChange: function (e) {
+    console.log(e)
     console.log('评级发生change事件，携带value值为：', e.detail.value)
-    this.data.cycle_id = e.detail.value
-    console.log(this.data.cycle_id)
+    var zhouqishuzu = e.detail.value
+    var zhouqi222 = zhouqishuzu.split("+")
+    this.data.cycle_id = zhouqi222[0]
+    var that = this
+    that.setData({
+      zhouqiname: zhouqi222[1],
+      zhouqiid: zhouqi222[0]
+    })
   },
 
   /*债券评级*/
@@ -77,10 +140,24 @@ Page({
   },
   zhaiquanChange:function (e) {
     console.log('评级发生change事件，携带value值为：', e.detail.value)
-    this.data.funds_rate_id = e.detail.value
     console.log(this.data.funds_rate_id)
+    var zhaiquanshuzu = e.detail.value
+    var zhaiquan222 = zhaiquanshuzu.split("-")
+    console.log('sort' + zhaiquan222[2])
+    var that = this
+    that.setData({
+      zhaiquanname: zhaiquan222[1],
+      zhaiquanid: zhaiquan222[0],
+      zhaiquansort: zhaiquan222[2],
+    })
   },
-
+  bindDateChange: function (e) {
+    console.log('时间发送选择改变，携带值为', e.detail.value)
+    this.data.date = e.detail.value
+    this.setData({
+      date: e.detail.value
+    })
+  },
   /*主体评级*/
   zhuticlick: function (e) {
     var id = e.currentTarget.dataset.zhutinum
@@ -93,8 +170,15 @@ Page({
   },
   zhutiChange: function (e) {
     console.log('评级发生change事件，携带value值为：', e.detail.value)
-    this.data.main_rate_id = e.detail.value
     console.log(this.data.main_rate_id)
+    var zhutishuzu = e.detail.value
+    var zhuti222 = zhutishuzu.split("-")
+
+    var that = this
+    that.setData({
+      zhutiname: zhuti222[1],
+      zhutiid: zhuti222[0]
+    })
   },
 
 
@@ -107,19 +191,35 @@ Page({
     })
     that.setData({
       checked: false,
-      showDialogRight: !this.data.showDialogRight
+      showDialogRight: !this.data.showDialogRight,
+	  disabled:false
     })
   },
   freeBackRight: function () {
     var that = this
     that.setData({
-      showDialogRight: !this.data.showDialogRight
+      showDialogRight: !this.data.showDialogRight,
+	  disabled:false
     });
   },
 
+  bphone:function(e){
+       this.data.bphone = e.detail.value
+  },
+  yzmjianyan: function (e) {
+    console.log(e.detail.value)
+    this.data.yanzhengmacode = e.detail.value
+    console.log(this.data.yanzhengmacode)
+  },
   /**发短信 */
   faduanxin:function(e){
     var that = this
+	console.log(this.data.bphone)
+  if (this.data.bphone){
+    that.setData({
+      bian: true,
+      disabled: true
+    })
     wx.request({
       url: app.globalData.send_sms,
       method: 'POST',
@@ -127,20 +227,63 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       data: {
-        phone: e.detail.value
+        phone: this.data.bphone,
+        type:1
       },
       success: function (res) {
-        console.log(res.data.sms_code)
-        this.data.sms_code = res.data.sms_code
+        console.log('验证码：' + res.data.sms_code)
+        if (res.data.sms_code == undefined) {
+          wx.showModal({
+            title: '提示',
+            content: '您的短信发送已上限，请明天再发布债券',
+          })
+          that.setData({
+            yanzhengma: '发送验证码',
+            currentTime: 61,
+            disabled: false,
+            bian: false,
+          })
+        } else {
+          that.dianjiing();
+          that.setData({
+            sms_code: res.data.sms_code,
+          })
+        }
       }
     })
+  }else{
+    wx.showModal({
+      title: '提示',
+      content: '请输入手机号',
+    })
+  }
+
+  },
+  dianjiing: function (options) {
+    var that = this;
+    var currentTime = that.data.currentTime
+    interval = setInterval(function () {
+      currentTime--;
+      that.setData({
+        yanzhengma: currentTime + '秒'
+      })
+      if (currentTime <= 0) {
+        clearInterval(interval)
+        that.setData({
+          yanzhengma: '重新发送',
+          currentTime: 61,
+          disabled: false,
+          bian: false,
+        })
+      }
+    }, 1000)
   },
   formSubmit:function(e){
     console.log(e.detail.value)
-    var name = e.detail.value.chengshi.split("+")
-    var zhouqi = e.detail.value.zhouti.split("+")
-    var pingji = e.detail.value.pingji.split("+")
-    var zhuti = e.detail.value.zhuti.split("+")
+    var name = e.detail.value.chengshi.split("+");
+    var zhouqi = e.detail.value.zhouti.split("+");
+    var pingji = e.detail.value.pingji.split("+");
+    var zhuti = e.detail.value.zhuti.split("+");
     console.log('分割之后')
     console.log(name) 
     console.log(zhouqi) 
@@ -155,15 +298,12 @@ Page({
       zhaiquanname:pingji[1],
       zhutiname:zhuti[1]
     })
-
-
   },
   formSubmit2: function (e) {
     var that = this
     console.log(e.detail.value)
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;  
-    var card = wx.getStorageSync('card3');
-    if (e.detail.value.phone == '' || e.detail.value.company == '' || this.data.cityid == ''||e.detail.value.person == '' || e.detail.value.sms_code == ''){
+    if (e.detail.value.phone == '' || e.detail.value.company == '' ||e.detail.value.person == '' || e.detail.value.sms_code == ''){
         wx.showModal({
           title: '提示',
           content: '必填项必须填写完整，请检查是否有遗漏。',
@@ -175,45 +315,92 @@ Page({
           content: '你输入的手机号有误',
         })
       }else{
+        var card = wx.getStorageSync('card3');
         wx.uploadFile({
-          url: app.globalData.create_funds,
+          url: app.globalData.upload,
           filePath: card,
-
-          name: 'card3',
-          formData: {
-            'user_id': app.globalData.user_id,
-            'person': e.detail.value.person,
-            'region_id': this.data.cityid,
-            'company': e.detail.value.company,
-            'phone': e.detail.value.phone,
-            'money': e.detail.value.money,
-            'limit': e.detail.value.limit,
-            'interest': e.detail.value.interest,
-            'cycle_id': e.detail.value.cycle_id,
-            'funds_rate_id': e.detail.value.funds_rate_id,
-            'main_rate_id': e.detail.value.main_rate_id,
-            'issue_time': e.detail.value.issue_time,
-            'measures': e.detail.value.measures,
-            'card': card,
-            'sms_code': e.detail.value.sms_code,
-          },
+          name: 'img',
           success: function (res) {
+            console.log('上传照片：')
             console.log(res)
-            wx.showModal({
-              title: '成功提示',
-              content: '发布成功，等待后台审核发布',
-              success: function () {
-                if (res.confirm) {
+            console.log(res.data)
+            console.log(JSON.parse(res.data).img)
+            var imageurl = JSON.parse(res.data).img
+            wx.setStorage({ key: "imageUrl", data: imageurl })
+          }
+        })
+        var imageUrl = wx.getStorageSync('imageUrl')
+        console.log(this.data.region_id)
+        console.log(this.data.zhouqiid)
+        console.log(this.data.zhaiquanid)
+        console.log(this.data.zhutiid)
+        console.log(this.data.region_id2)
+        console.log(this.data.zhouqiid2)
+        console.log(this.data.zhaiquanid2)
+        console.log(this.data.zhutiid2)
+        if (this.data.region_id==null){
+          var chengshiid = this.data.region_id2
+        }else{
+          var chengshiid = this.data.region_id
+        }
+        if (this.data.zhouqiid == null) {
+          var zhouqiid = this.data.zhouqiid2
+        } else {
+          var zhouqiid = this.data.zhouqiid
+        }
+        if (this.data.zhaiquanid == null) {
+          var zhaiquanid = this.data.zhaiquanid2
+        } else {
+          var zhaiquanid = this.data.zhaiquanid
+        }
+        if (this.data.zhutiid == null) {
+          var zhutiid = this.data.zhutiid2
+        } else {
+          var zhutiid = this.data.zhutiid
+        }
+        wx.request({
+          url: app.globalData.create_funds,
+          method: 'POST',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {
+            card: imageUrl,
+            user_id: app.globalData.user_id,
+            person: e.detail.value.person,
+            region_id: chengshiid,
+            company: e.detail.value.company,
+            phone: e.detail.value.phone,
+            money: e.detail.value.money * 100000000,
+            limit: e.detail.value.limit,
+            interest: e.detail.value.interest,
+            cycle_id: zhouqiid,
+            funds_rate_id: zhaiquanid,
+            main_rate_id:zhutiid,
+            issue_time: e.detail.value.issue_time,
+            measures: e.detail.value.measures,
+            funds_rate_sort: this.data.zhaiquansort,
+            sms_code: e.detail.value.sms_code,
+            funds_id: this.data.fund_id,
+          },
+          success: res => {
+            console.log(res)
+            if (res.data.code == 200) {
+              wx.showModal({
+                title: '提示',
+                content: '发布成功，等待后台审核',
+                success: function () {
                   wx.navigateTo({
-                    url: '../index/index',
-                  })
-                } else if (res.cancel) {
-                  wx.navigateTo({
-                    url: '../index/index',
+                    url: '../CorporateBonds/CorporateBonds',
                   })
                 }
-              }
-            })
+              })
+            } else if (res.data.code == 400) {
+              wx.showModal({
+                title: '提示',
+                content: res.data.code + res.data.message,
+              })
+            }
           }
         })
       }
@@ -246,7 +433,8 @@ Page({
     var time = util.formatTime(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
     that.setData({
-      time: time
+      time: time,
+      fund_id:options.id
     });  
     wx.request({
       url: app.globalData.screen,
@@ -258,10 +446,13 @@ Page({
       },
       success: function (res) {
         console.log(res)
+
         that.setData({
           /**城市 */
           region: res.data.region,
-        })
+        })    
+
+
       }
     })
 
@@ -313,16 +504,30 @@ Page({
       success: function (res) {
         console.log(666)
         console.log(res)
+        console.log(res.data.region_id)
+        console.log(res.data.main_rate_id)
+        console.log(res.data.funds_rate_id)
+        console.log(res.data.cycle_id)
         console.log(666),
+        console.log("手机号：" + res.data.phone)
         that.setData({
           /**城市 */
+          bphone:res.data.phone,
           xiangqing: res.data,
           cityname:res.data.region,
-          zhouqiname: res.data.cycle_id,
+          zhouqiname: res.data.cycle,
           zhaiquanname: res.data.funds_rate,
           zhutiname: res.data.main_rate,
           time: res.data.create_time,
-          tempFilePaths: res.data.card
+          tempFilePaths: res.data.card,
+          date:res.data.issue_time,
+
+
+
+          region_id2: res.data.region_id,
+          zhutiid2: res.data.main_rate_id,
+          zhaiquanid2: res.data.funds_rate_id,
+          zhouqiid2: res.data.cycle_id
         })
       }
     })

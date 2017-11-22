@@ -4,6 +4,12 @@ App({
     userInfo: null,
     user_id: null,
     funds_real:null,
+    nickName: null,
+    avatarUrl: null,
+    gender: null,
+     province: null,
+      city: null,
+       country: null,
     /**获取openid */
     get_open_id: 'https://bond.jikeyun.net/index.php/interfaces/auth/get_open_id',
     /**获取用户信息 */
@@ -40,6 +46,8 @@ App({
     rate_data: 'https://bond.jikeyun.net/index.php/interfaces/home/rate_data',
     /**资金方认证 */
     funds_real: 'https://bond.jikeyun.net/index.php/interfaces/info/funds_real',
+    /**上传图片 */
+    upload: 'https://bond.jikeyun.net/index.php/interfaces/home/upload',
   },
   onLaunch: function () {
   var _this = this
@@ -49,27 +57,16 @@ App({
       console.log(res)
     }
   })
-  // 获取用户信息
-  wx.getSetting({
-    success: res => {
-      if (res.authSetting['scope.userInfo']) {
-        // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-        wx.getUserInfo({
-          success: res => {
-            // 可以将 res 发送给后台解码出 unionId
-            _this.globalData.userInfo = res.userInfo
-            
-
-            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-            // 所以此处加入 callback 以防止这种情况
-            if (this.userInfoReadyCallback) {
-              this.userInfoReadyCallback(res)
-            }
-          }
+      // 获取用户信息
+      wx.getUserInfo({
+      success: res => {
+        _this.globalData.userInfo = res.userInfo
+        wx.setStorage({
+          key: 'userInfo',
+          data: res.userInfo
         })
       }
-    }
-  })
+    })
     // 登录
     wx.login({
       success: res => {
@@ -85,35 +82,34 @@ App({
             code: res.code,
           },
           success:res=> {
-            console.log(res)
             _this.globalData.user_id = res.data.user_id
-            console.log(_this.globalData.userInfo)
           /*获取用户信息*/
-          wx.request({
-            url: _this.globalData.get_info,
-            method: 'POST',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            data: {
-              user_id: res.data.user_id,
-              nickName: _this.globalData.userInfo.nickName,
-              avatar: _this.globalData.userInfo.avatarUrl,
-              gender: _this.globalData.userInfo.gender,
-              province: _this.globalData.userInfo.province,
-              city: _this.globalData.userInfo.city,
-              country: _this.globalData.userInfo.country,
-            },
-            success: res => {
-              console.log('renzheng')
-              console.log(res)
-              console.log('是否已认证'+res.data.funds_real)
-              _this.globalData.funds_real = res.data.funds_real
-            }
-          })
+                wx.request({
+                  url: _this.globalData.get_info,
+                  method: 'POST',
+                  header: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                  },
+                  data: {
+                    user_id: res.data.user_id,
+                    nickName: _this.globalData.userInfo.nickName,
+                    avatar: _this.globalData.userInfo.avatarUrl,
+                    gender: _this.globalData.userInfo.gender,
+                    province: _this.globalData.userInfo.province,
+                    city: _this.globalData.userInfo.city,
+                    country: _this.globalData.userInfo.country,
+                  },
+                  success: res => {
+                    console.log('renzheng')
+                    console.log(res)
+                    console.log('是否已认证' + res.data.funds_real)
+                    _this.globalData.funds_real = res.data.funds_real
+                  }
+                })
           }
         })
       }
     })
   },
+  
 })

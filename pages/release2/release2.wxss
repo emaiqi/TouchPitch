@@ -19,6 +19,7 @@
   flex-flow: row;
 }
 .flex-wrap1 .flex-wrap label{
+  display: inline-block;
   width:40%;
   height:45px;
   line-height: 45px;
@@ -29,14 +30,15 @@
   letter-spacing: 0;
 }
 .flex-wrap1 .flex-wrap input{
-  width:60%;
+  display:inline-block;
+  width:55%;
   height:45px;
   line-height: 45px;
-  text-align: right;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #272727;
   letter-spacing: 0;
+  text-align: right;
 }
 .flex-wrap1 .flex-wrap picker{
   width:50%;
@@ -238,7 +240,6 @@
 /*上传图片*/
 .shangchuan{
   background: #FFFFFF;
-  border: 1px dashed #D8D8D8;
   width:54.9%;
   height:96px;
   margin:23px auto 0;
@@ -257,6 +258,13 @@
   font-family: PingFangSC-Regular;
   font-size: 18px;
   letter-spacing: 0;
+  border-radius: 0px
+}
+.fabu::after{
+  border:none;
+}
+.dianji{
+  background:#97803F;
 }
 
 
@@ -389,4 +397,23 @@ radio-group label .free-text{
   font-size: 13px;
   color: #FFFFFF;
   letter-spacing: 0;
+}
+
+/*发送验证码*/
+.fasong{
+  display: inline-block;
+  width:30%;
+  height:45px;
+  line-height: 45px;
+  background: #CDB05D;
+  color:#fff;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  letter-spacing: 0;
+  border-radius: 0px;
+  padding:0px;
+}
+.fasong::after{
+  border:none;
 }

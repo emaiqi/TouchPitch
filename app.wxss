@@ -5,7 +5,7 @@
   overflow-x: hidden
 }
 page{
-    background-color: #F8F8F8;
+    background-color: #F3F3F3;
     font-size: 16px;
     font-family: PingFangSC-Regular;
 }
@@ -37,6 +37,24 @@ page{
     text-align: left;
     font-size: 14px;
 }
+ .redtext{
+    background:#CDB05D !important;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+}
+.bluetext{
+  background:#CD5D5D !important;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+}
 @font-face {
   font-family: 'iconfont';  /* project id 463446 */
   src: url('//at.alicdn.com/t/font_463446_i3ekh4tu8i8p8pvi.eot');
@@ -59,3 +77,8 @@ page{
 .icon-duoceng:before { content: "\e614"; }/*wancheng*/
 .icon-yonghu:before { content: "\e602"; }/*商城icon*/
 .icon-jiantou:before { content: "\e654"; }/*商城icon*/
+
+
+.dianji{
+  background:#97803F;
+}

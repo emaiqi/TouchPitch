@@ -1,0 +1,14 @@
+<!--pages/filter/filter.wxml-->
+<view class="contain">
+  <view class="filter-contain">
+    <view class="filter-title">{{item.key}}</view>
+    <view class="filter-item-contain">
+      <view class="filter-item {{item.checked ? 'checked' : 'none'}}" wx:for="{{item.names}}" wx:for-index="index"  data-index="{{index}}" bindtap="chooseAgencyStyle0" data-keyid="{{item.id}}">{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class="bottom-btns">
+    <view class="cancel" bindtap="cancel">取消</view>
+    <view class="sure" bindtap="sure">搜索</view>
+  </view>
+</view>

@@ -56,10 +56,17 @@
 /*上传图片*/
 .shangchuan{
   background: #FFFFFF;
-  border: 1px dashed #D8D8D8;
   width:54.9%;
   height:96px;
   margin:23px auto 0;
+}
+.shanchu{
+  width:30px;
+  height:30px;
+  position: relative;
+  margin-left:68%;
+  margin-top:-100px;
+
 }
 
 /*发布*/
@@ -75,9 +82,11 @@
   font-family: PingFangSC-Regular;
   font-size: 18px;
   letter-spacing: 0;
+  border-radius: 0px
 }
-
-
+.dianji{
+  background:#97803F;
+}
 
 .wsx2{
   display: flex;

@@ -17,7 +17,7 @@
   letter-spacing: 0;
 }
 .flex-wrap{
-  width:100%;
+  width:98%;
   height:11px;
   margin-bottom:12px;
 }
@@ -25,21 +25,25 @@
   margin-bottom:0px;
 }
 .flex-wrap .iconfont{
-  font-size:12px;
+  font-size:14px;
   margin-left:13px;
   margin-right: 10px
 }
 .flex-wrap text{
   font-family: PingFangSC-Regular;
-  font-size: 11px;
+  font-size: 13px;
   color: #7E899D;
   letter-spacing: 0;
 }
 /*内容*/
 .unauthorized-content{
   width:100%;
-  height:380px;
+  padding:0px;
   background:#fff;
+}
+.fotterbutton{
+  padding:10px 0px 20px;
+  background:#f3f3f3;
 }
 .unauthorized-content .content-nav{
   width:100%;
@@ -128,7 +132,6 @@ input{
 /*上传图片*/
 .shangchuan{
   background: #FFFFFF;
-  border: 1px dashed #D8D8D8;
   width:54.9%;
   height:96px;
   margin:23px auto;
@@ -139,11 +142,49 @@ input{
   display: inline-block;
   width:80%;
   height:49px;
-  margin-top:29px;
   margin-left:10%;
   background: #CDB05D;
   color:#fff;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 18px;
+  border-radius: 0px;
+}
+.fabu::after{
+  border:none;
+}
+.dianji{
+  background:#97803F;
+}
+
+/*发送*/
+.yanzhengma{
+  width:89%;
+  margin:0 auto;
+  padding:0;
+  display: flex;
+  flex-flow: row;
+}
+.yanzhengma .yanzhengma2{
+  width:60%;
+  margin:0;
+  margin-right:5%;
+  display: inline-block;
+}
+.fasong{
+  display: inline-block;
+  width:30%;
+  height:45px;
+  line-height: 45px;
+  background: #CDB05D;
+  color:#fff;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  letter-spacing: 0;
+  border-radius: 0px;
+  padding:0px;
+}
+.fasong::after{
+  border:none;
 }

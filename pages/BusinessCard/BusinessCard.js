@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    tempFilePaths: '../../image/upload@3x.png',
   },
   /**选择图片 */
   xuanzetupian: function () {
@@ -25,6 +25,13 @@ Page({
 
         wx.setStorage({ key: "card1", data: tempFilePaths[0] })
       } 
+    })
+  },
+  shanchu:function(){
+    var that = this
+    wx.setStorage({ key: "card1", data: '' })
+    that.setData({
+      tempFilePaths: '../../image/upload@2x.png'
     })
   },
   formSubmit: function (e) {
@@ -66,6 +73,21 @@ Page({
         },
         success: function (res) {
           console.log(res)
+          wx.showModal({
+            title: '成功提示',
+            content: '您的信息已修改成功，请等待后台审核',
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../personal/personal'
+                })
+              } else if (res.cancel) {
+                wx.switchTab({
+                  url: '../personal/personal'
+                })
+              }
+            }
+          })
         }
       })
     }
@@ -134,7 +156,29 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var that = this
+    var card = wx.getStorageSync('card');
+    that.setData({
+      src: card
+    })
+    wx.request({
+      url: app.globalData.my_card,
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        user_id: app.globalData.user_id,
+      },
+      success: function (res) {
+        wx.stopPullDownRefresh()
+        console.log(res)
+        that.setData({
+          mycard: res.data,
+          tempFilePaths: res.data.card
+        })
+      }
+    })
   },
 
   /**

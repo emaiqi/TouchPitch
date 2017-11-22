@@ -32,10 +32,12 @@
   <textarea name="brief" value="{{mycard.brief}}" placeholder='介绍 （选填）：请填写1-100个字介绍，让朋友更了解你' class="jieshao"
   placeholder-style='color:#7E899D;'/>
 
-    <view class="shangchuan" bindtap="xuanzetupian">
+  <view class="shangchuan" bindtap="xuanzetupian">
     <image style="width:100%;height:100%;" src="{{tempFilePaths}}"></image>
-    </view>
+  </view>
 
-  <button formType='submit' bindtap="dianji" class="fabu">保存</button>
+
+  <button wx:if="{{mycard.status==1}}" hover-class="dianji" formType='submit' bindtap="dianji" class="fabu">修改</button>
+  <button wx:if="{{mycard.status!=1}}" hover-class="dianji" formType='submit' bindtap="dianji" class="fabu">保存</button>
   </form>
 </view>

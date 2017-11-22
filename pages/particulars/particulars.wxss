@@ -48,7 +48,8 @@
 .top-content{
   width:100%;
   height:115px;
-  background-image: linear-gradient(-180deg, rgba(255,252,246,0.37) 0%, #FFF8EA 100%);
+  background:url("https://raw.githubusercontent.com/wushuxuan/Resources/master/image/xiangqing_bg%402x.png");
+  background-position: 20% 40%;
 }
 
 /*top4个模块*/
@@ -313,4 +314,53 @@
 }
 .free-toast-submit{
   color: #4A90E2;
+}
+
+
+
+
+/*提交成功弹窗*/
+.footertop{
+  width:100%;
+  height:20px;
+  margin-top:23px;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #222222;
+  letter-spacing: 0;
+}
+.footercontent{
+  width:100%;
+  margin-top:18px;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #222222;
+  letter-spacing: 0; 
+  text-align: center;
+}
+.footercontent>view:nth-child(1){
+ height:20px;
+ margin-bottom:5px;
+ text-align: center;
+}
+.footercontent>view text{
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #CDB05D;
+  letter-spacing: 0;
+  display: inline-block;
+  margin-left:10px;
+}
+.footerqueren{
+  width:100%;
+  height:45px;
+  line-height: 45px;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #4A90E2;
+  letter-spacing: 0;
+  margin-top:16px;
+  border-top: 1px solid #EDEDED;
 }

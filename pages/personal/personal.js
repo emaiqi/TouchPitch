@@ -22,7 +22,11 @@ Page({
         name: '关于我们'
       },]
   },
-
+  tiaozhuan:function(){
+    wx.navigateTo({
+      url: '../unauthorized/unauthorized',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -30,7 +34,8 @@ Page({
     var that = this
     console.log(app.globalData.userInfo)
     that.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      funds_real: app.globalData.funds_real
     })
     wx.request({
       url: app.globalData.my_center,
@@ -61,7 +66,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this
+    wx.request({
+      url: app.globalData.my_center,
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        user_id: app.globalData.user_id,
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          userInfo: res.data
+        })
+      }
+    })
   },
 
   /**
@@ -82,7 +103,29 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var that = this
+    console.log(app.globalData.userInfo)
+    that.setData({
+      userInfo: app.globalData.userInfo,
+      funds_real: app.globalData.funds_real
+    })
+    wx.request({
+      url: app.globalData.my_center,
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        user_id: app.globalData.user_id,
+      },
+      success: function (res) {
+        wx.stopPullDownRefresh()
+        console.log(res.data)
+        that.setData({
+          userInfo: res.data
+        })
+      }
+    })
   },
 
   /**

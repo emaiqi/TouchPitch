@@ -1,0 +1,72 @@
+/* pages/filter/filter.wxss */
+.contain {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+.filter-contain {
+  width: 100%;
+  position: relative;
+}
+.filter-title {
+  color: #333;
+  font-weight: 700;
+  font-size: 30rpx;
+  margin: 10rpx 20rpx;
+}
+.filter-item-contain {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter-item {
+  text-align: center;
+  background-color: #eee;
+  border-radius: 4rpx;
+  width: 25%;
+  margin: 20rpx;
+  color: #333;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+}
+.filter-item:active{
+  opacity: 0.8
+}
+.filter-item.checked {
+  background-color: red;
+  color: #fff;
+}
+/*底部按钮  */
+.bottom-btns {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 40rpx 60rpx;
+  box-sizing: border-box;
+}
+.bottom-btns view{
+  width: 30%;
+  padding: 10rpx 0;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}
+.bottom-btns .sure{
+  color: #fff;
+  border: 2rpx solid  #3cd3ad;
+  background-color: #3cd3ad;
+}
+.bottom-btns .sure:active{
+  opacity: 0.8
+}
+.bottom-btns .cancel{
+  color: #999;
+  border: 2rpx solid  #ccc;
+  background-color: #fff;
+}

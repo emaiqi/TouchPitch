@@ -1,4 +1,9 @@
 /**index.wxss**/
+#nav{
+  width:100%;
+  position: fixed;
+  top:0px;
+}
 .index_hd{
   width:100%;
   height:191px;
@@ -15,21 +20,30 @@
 .index_nav{
   width:100%;
   height:50px;
-  margin-top:192px;
+  /*margin-top:192px;*/
   background:#fff;
   display: flex;
   flex-flow: row;
 }
 .index_nav .flex-wrap{
-  width:20%;
+  padding:0 2%;
   margin-top:15px;
-  margin-right:5%;
+  margin-right:2%;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #7E899D;
   letter-spacing: 0;
+  display: flex;
+  flex-flow: row;
 }
+.index_nav .flex-wrap image{
+  width:15px;height:15px;
+  display: inline-block;
+  margin-left:2px;
+  margin-top:5px;
+}
+
 .index_nav .active{
   color:#CDB05D;
   border-bottom: 2px solid  #CDB05D; 
@@ -39,10 +53,10 @@
   border-right: 1px solid #f3f3f3;
 }
 .index_nav .flex-wrap:nth-child(1){
-  margin-left:5%;
+  margin-left:2%;
 }
 .index_nav .flex-wrap:nth-child(3){
-  margin-right:4%;
+  margin-right:2%;
 }
 /*筛选*/
 .shuaixuan{
@@ -92,7 +106,7 @@
   color: #272727;
   letter-spacing: 0;
 }
-.index_contents .flex-wrap .flex-hd view>text{
+.index_contents .flex-wrap .flex-hd view>text:nth-child(1){
   background: #5A8DCC;
   font-family: PingFangSC-Regular;
   font-size: 8px;
@@ -222,13 +236,13 @@
   display: block;
 }
 /*模态框中的内容*/
-radio-group{
+checkbox-group{
   margin:10rpx 0rpx;
 }
 .last-free-radios{
   margin-bottom:40px;
 }
-radio-group>label{
+checkbox-group>label{
   width:66px;
   padding:6px 0;
   display: inline-block;
@@ -241,19 +255,19 @@ radio-group>label{
   margin-bottom:10px;
   position: relative;
 }
-radio-group label image{
+checkbox-group label image{
   width:11.8px;height:9.9px;
   position: absolute;
   right: 0;top:0;
   display: inline-block;
 }
-radio-group label radio{
+checkbox-group label checkbox{
   width:100%;
   z-index: 3;
   display: none;
   background: #E8E6E6;
 }
-radio-group label .free-text{
+checkbox-group label .free-text{
   width:100%;
   text-align: center;
   display: inline-block;
@@ -272,6 +286,10 @@ radio-group label .free-text{
   z-index: 11;
   padding-left:8px;
 }
+.flex-position{
+  width:100%;
+  position: relative;
+}
 .free-masklayer-show-right .free-dialog-content-right {
   transform: translateX(0);
 }
@@ -279,11 +297,17 @@ radio-group label .free-text{
   display: block;
 }
 .free-pickerRight-buttons{
-  width:100%;
+  width:248px;
   height:40px;
   position:fixed;
+  right:0;
   bottom:0px;
-  left:0;
+  z-index: 12;
+  transform: translateX(150%);
+  transition: all 0.4s ease;
+}
+.free-masklayer-show-rightbutton{
+    transform: translateX(0);
 }
 .free-pickerRight-buttons>button{
   display: inline-block;
@@ -313,4 +337,17 @@ radio-group label .free-text{
   font-size: 13px;
   color: #FFFFFF;
   letter-spacing: 0;
+}
+.liang{
+  color:red;
+}
+
+
+/*加载中*/
+.jiazaizhong{
+  width:100%;
+  padding:3%;
+  font-size:12px;
+  color:#707070;
+  text-align: center;
 }
