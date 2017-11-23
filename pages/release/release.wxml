@@ -74,7 +74,7 @@
     <view catchtouchmove="preventTouchMove" class="free-dialog {{ showDialogRight ? 'free-masklayer-show-right' : '' }}">
       <view class="free-masklayer" bindtap="toggleDialogRight" />
         <form bindsubmit="formSubmit" bindreset="reset">
-          <view class="free-dialog-content-right">
+          <scroll-view scroll-y  class="free-dialog-content-right">
                 <view wx:if="{{chengshiopen!=''}}" class="free-panel-title">请选择所在区域</view>
                 <radio-group wx:if="{{chengshiopen!=''}}"  name="chengshi" class='free-radios' bindchange="regionChange" style="margin-bottom:40px;">
                   <label class="free-radio-city" bindtap="regionclick" wx:for="{{region}}" 
@@ -126,7 +126,7 @@
         <button formType="reset" bindtap='freetoBackRight' class="free-buttonRight free-dialog-reset">取消</button>
         <button formType="submit" bindtap='freeBackRight' class="free-buttonRight free-dialog-submit">确定</button>
       </view>
-          </view>
+          </scroll-view>
         </form>
     </view>
 

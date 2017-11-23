@@ -1,4 +1,5 @@
 //logs.js
+var WxParse = require('../../wxParse/wxParse.js');
 var app = getApp()
 Page({
 
@@ -24,9 +25,12 @@ Page({
 
       },
       success: function (res) {
+        console.log(res)
         that.setData({
           guanyv:res.data.content
         })
+       var article= res.data.content;
+        WxParse.wxParse('article', 'html', article, that, 0);
       }
     })
   },

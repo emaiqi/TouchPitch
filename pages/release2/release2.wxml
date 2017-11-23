@@ -52,7 +52,7 @@
     <view class='flex-wrap5'>
       <view class="wrap2">发行日期:</view>
       <picker mode="date" value="{{date}}" start="{{time}}" end="2018-09-01" bindchange="bindDateChange">
-        <input name="issue_time" value="{{date}}" name="issue_time" class="wrap2" placeholder='请选择发行日期'></input>
+        <input disabled='true' name="issue_time" value="{{date}}" name="issue_time" class="wrap2" placeholder='请选择发行日期'></input>
       </picker>
     </view>
 
