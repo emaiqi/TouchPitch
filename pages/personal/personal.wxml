@@ -7,7 +7,8 @@
     <view class="hd_contents">
       <view class="hd_texts">
         <text>{{userInfo.nickName}}</text>
-        <view class="renzheng" wx:if="{{userInfo.funds_real!=1}}" bindtap="tiaozhuan">立即认证资金方</view>
+        <view class="renzheng" wx:if="{{userInfo.funds_real==3 || userInfo.funds_real==null}}" bindtap="tiaozhuan">立即认证资金方</view>
+        <view class="shenqing" wx:if="{{userInfo.funds_real==2}}">认证申请中</view>
         <view wx:if="{{userInfo.funds_real==1}}" class="image"><image src="../../image/vip@2x.png"></image></view>
         <text wx:if="{{userInfo.funds_real==1}}">投资机构</text>
       </view>

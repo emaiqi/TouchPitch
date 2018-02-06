@@ -10,6 +10,8 @@ App({
      province: null,
       city: null,
        country: null,
+       /**获取手机号 */
+       contact: 'https://bond.jikeyun.net/index.php/interfaces/info/contact',
     /**获取openid */
     get_open_id: 'https://bond.jikeyun.net/index.php/interfaces/auth/get_open_id',
     /**获取用户信息 */
@@ -104,6 +106,17 @@ App({
                     console.log(res)
                     console.log('是否已认证' + res.data.funds_real)
                     _this.globalData.funds_real = res.data.funds_real
+                  }
+                })
+                wx.request({
+                  url: _this.globalData.contact,
+                  method: 'POST',
+                  header: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                  },
+                  data: {},
+                  success: function (res) {
+                    _this.globalData.phone = res.data.phone
                   }
                 })
           }

@@ -130,3 +130,7 @@
   background:#fff;
   color:#CDB05D;
 }
+
+.shenqing{
+  margin-left:20px;font-size:12px;color:#E5D6AA;border:1px solid #E5D6AA;padding:2px 5px;height:20px;line-height: 20px
+}

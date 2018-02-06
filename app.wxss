@@ -46,6 +46,46 @@ page{
   margin-left:3px;
   padding:2px;
 }
+.shtext01{
+  border:1px solid #48c23d !important;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color: #48c23d !important;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+  background:none !important;
+}
+.shtext02{
+  border:1px solid #CDB05D !important;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color: #CDB05D !important;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+  background:none !important;
+}
+.shtext03{
+  border:1px solid red !important;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color: red !important;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+  background:none !important;
+}
+.shtext04{
+  border:1px solid #999 !important;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color: #999 !important;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+  background:none !important;
+}
 .bluetext{
   background:#CD5D5D !important;
   font-family: PingFangSC-Regular;

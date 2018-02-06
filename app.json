@@ -13,11 +13,13 @@
     "pages/release2/release2"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle": "#000",
+    "backgroundColor": "#eeeeee",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "碰投",
     "navigationBarTextStyle":"black",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance":"100"
   },
   "tabBar": {
     "list": [

@@ -127,12 +127,13 @@
   height:70px;
   margin-bottom:20px;
   margin-top:20px;
+  text-align: center
 }
 .particular-content .flex-wrap .flex-img image{
   display: inline-block;
-  width:70px;
+  width:100px;
   height:70px;
-  margin-left:40%;
+  margin:0 auto;
   background: #D8D8D8;
 }
 .particular-content .flex-wrap .flex-top{
@@ -209,7 +210,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 100;
   background: rgba(0,0,0,0.50);
   display: none;
 }
@@ -226,7 +227,7 @@
   position: fixed;
   top:20%;
   left:5%;
-  z-index:11;
+  z-index:110;
   display: none;
 }
 .free-masklayer-show .free-toast-contents{

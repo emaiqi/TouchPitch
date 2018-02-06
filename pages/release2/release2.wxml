@@ -13,13 +13,13 @@
     </view>
     <view class='flex-wrap'>
       <label>联系人：</label>
-      <input name="person"  value="{{xiangqing.person}}" placeholder='温**'></input>
+      <input name="person" placeholder='请输入联系人姓名'  value="{{xiangqing.person}}" placeholder='温**'></input>
     </view>
     <view class='flex-wrap2'>
       <label>联系电话：</label>
-      <input type="number" minlength="11" maxlength="11" style="width:30%;" name="phone" bindinput="bphone" value="{{xiangqing.phone}}"></input>
+      <input type="number" minlength="11" maxlength="11" style="width:30%;" name="phone" bindinput="bphone" placeholder='请输入手机号' value="{{xiangqing.phone}}"></input>
       <button disabled='{{disabled}}' class="fasong" bindtap='faduanxin' style="{{bian?'background:#ddd;':''}}">{{yanzhengma}}</button>
-      <input type="number" name="sms_code" bindchange="yzmjianyan"></input>
+      <input type="number" name="sms_code" bindchange="yzmjianyan" placeholder=' 输入验证码'></input>
     </view>
   </view>
 
@@ -29,20 +29,20 @@
   <view class="flex-wrap1">
     <view class='flex-wrap3'>
       <label>发行总额：</label>
-      <input name="money" value="{{xiangqing.money}}" class="picker" placeholder='请填写'></input><text>亿元</text> 
+      <input  type="digit" name="money" value="{{xiangqing.money}}" class="picker" placeholder='请填写'></input><text>亿元</text> 
       <label class="qixian" style="text-align: right;"> 期限：</label>
-      <input  name="limit" value="{{xiangqing.limit}}" class="picker" placeholder='请填写'></input><text>年</text> 
+      <input name="limit" value="{{xiangqing.limit}}" class="picker" placeholder='请填写'></input><text>年</text> 
     </view>
 
     <view class='flex-wrap4'>
       <view class="wrap1">票面利率(%)：</view>
-      <input  style="color: #000;" name="interest" value="{{xiangqing.interest}}" placeholder='请填写'></input>
+      <input  type="digit" style="color: #000;" name="interest" value="{{xiangqing.interest}}" placeholder='请填写'></input>
       <view class="zhouqi">付息周期：</view>
-      <input disabled='true' style="color: #000;" name="cycle_id" value="{{zhouqiname}}" placeholder='请选择' bindtap='toggleDialogRight2'/>
+      <input  type="digit" disabled='true' style="color: #000;" name="cycle_id" value="{{zhouqiname}}" placeholder='请选择' bindtap='toggleDialogRight2'/>
     </view>
 
     <view class='flex-wrap4'>
-      <view class="wrap2">债券信用评级：</view>
+      <view class="wrap2">资产信用评级：</view>
       <input disabled='true' style="color: #000;" name="funds_rate_id" value="{{zhaiquanname}}" placeholder='请选择' bindtap='toggleDialogRight3'/>
       <view class="zhouqi2">主体信用评级：</view>
 <input disabled='true' style="color: #000;" name="main_rate_id" value="{{zhutiname}}" placeholder='请选择' bindtap='toggleDialogRight4'/>
@@ -57,7 +57,13 @@
     </view>
 
   </view>
-  <textarea disabled='{{disabled}}' name="measures" value="{{xiangqing.measures}}" class="danbaocuoshi" placeholder='担保措施...'/>
+
+  
+  <view class="release_top2">风控措施</view>
+  <view class="danbao" style="height:auto;">
+  <textarea maxlength="-1" style="{{textareahidden?'display:none;':''}}" disabled='{{disableding}}' name="measures" class="danbaocuoshi" bindblur="textareaInput" bindfocus="textareaFocus"/>
+  <rich-text style="height:110px;overflow:hidden;" class="textarea" bindtap="textareaFocus">{{xiangqing.risk}}</rich-text>
+  </view>
 
   <view class="shangchuan" bindtap="xuanzetupian">
     <image wx:if="{{tempFilePaths==''}}" style="width:100%;height:100%;" src="../../image/upload@3x.png"></image>
@@ -115,13 +121,16 @@
                 <image style="{{index==zhutinum?'display:block;':'display:none;'}}" src="../../image/quxiao@2x.png"></image>
               </label>
             </radio-group>
-      <view class="free-pickerRight-buttons">
-        <button formType="reset" bindtap='freetoBackRight' class="free-buttonRight free-dialog-reset">取消</button>
-        <button formType="submit" bindtap='freeBackRight' class="free-buttonRight free-dialog-submit">确定</button>
-      </view>
+    
           </scroll-view>
         </form>
     </view>
 
 
+</view>
+
+
+ <view class="free-pickerRight-buttons  {{ showDialogRight ? 'free-masklayer-show-rightbutton' : '' }}">
+        <button formType="reset" bindtap='freetoBackRight' class="free-buttonRight free-dialog-reset">取消</button>
+        <button formType="submit" bindtap='freeBackRight' class="free-buttonRight free-dialog-submit">确定</button>
 </view>

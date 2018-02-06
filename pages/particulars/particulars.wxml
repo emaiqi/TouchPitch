@@ -1,9 +1,10 @@
 <!--pages/particulars/particulars.wxml-->
-<view class="container">
+<view class="container" style="height:{{height}};" >
   <view class="particular-top">
     <view class="flex-hd">
       <view>发行人 : {{xiangqing.company}}
-      <text wx:if="{{xiangqing.funds_type!=''}}">{{xiangqing.funds_type}}</text>
+      <text wx:if="{{xiangqing.company_type!=''}}">{{xiangqing.company_type}}</text>
+      <text wx:if="{{xiangqing.funds_type!=''}}" class="{{item.funds_type=='私募债'?'redtext':'bluetext'}}">{{xiangqing.funds_type}}</text>
       </view>
       <image src="../../image/dingwei@2x.png"></image>
       <text> {{xiangqing.region}}</text>
@@ -12,24 +13,28 @@
       <view class="flex-left">
         <view class="flex">
           <view>评级</view>
-          <view>{{xiangqing.funds_rate}}</view>
+          <view wx:if="{{xiangqing.funds_rate==''}}">--</view>
+          <view wx:if="{{xiangqing.funds_rate!=''}}">{{xiangqing.funds_rate}}</view>
         </view>
         <view class="flex">
           <view>收益</view>
-          <view>{{xiangqing.interest}}<text>%</text></view>
+          <view wx:if="{{xiangqing.interest=='0.00'}}">--</view>
+          <view wx:if="{{xiangqing.interest!='0.00'}}">{{xiangqing.interest}}<text>%</text></view>
         </view>
         <view class="flex">
           <view>期限</view>
-          <view>{{xiangqing.limit}}<text>年</text></view>
+          <view wx:if="{{xiangqing.limit==''}}">--</view>
+          <view wx:if="{{xiangqing.limit!=''}}">{{xiangqing.limit}}<text>年</text></view>
         </view>
         <view class="flex">
           <view>总额度</view>
-          <view>{{xiangqing.money}}<text>亿</text></view>
+          <view wx:if="{{xiangqing.money=='0.00'}}">--</view>
+          <view wx:if="{{xiangqing.money!='0.00'}}">{{xiangqing.money}}<text>亿</text></view>
         </view>
       </view>
       <view class="flex-bottom">
         <view class="bottom-left">付息方式：{{xiangqing.cycle}}</view>
-        <view class="bottom-right">发行日期：{{xiangqing.create_time}}</view>
+        <view class="bottom-right">发行日期：{{xiangqing.issue_time}}</view>
       </view>
     </view>
   </view>
@@ -38,14 +43,14 @@
       <view class="flex-top">风控措施</view>
       <view class="flex-content">{{xiangqing.risk}}</view>
     </view>
-     <view class="flex-wrap">
+     <view class="flex-wrap" style="margin-bottom:50px;">
       <view class="flex-top">发行人简介</view>
-      <view class="flex-img"><image src="{{xiangqing.card}}"></image></view>
+      <view class="flex-img"><image src="{{xiangqing.issuer_picurl}}"></image></view>
       <view class="flex-content">{{xiangqing.issuer_brief}} </view>
     </view>
   </view>
 
-  <view class="footer">
+  <view wx:if="{{canbuy==0}}" class="footer">
     <view class="footer-left" bindtap="dadianhua">
       <image src="../../image/call@2x.png"></image>
       <text>电话咨询</text>
@@ -55,7 +60,7 @@
 </view>
 
 <!--弹窗-->
-<view class="free-toast {{showToast?'free-masklayer-show':''}}">
+<view class="free-toast {{showToast?'free-masklayer-show':''}}" catchtouchmove="preventTouchMove">
      <view class="free-masklayer"/>
      <view class="free-toast-contents">
      <form bindsubmit="formSubmit" bindreset="formReset"> 
@@ -70,11 +75,11 @@
             </view>
             <view class="form-flex">
               <label>联系人电话：</label>
-              <input name="phone" value="{{rengouxinxi.phone}}"/>
+              <input maxlength='11' name="phone" value="{{rengouxinxi.phone}}"/>
             </view>
             <view class="form-flex qian">
               <label style="width:104px;">认购金额：</label>
-              <input name="money" class="god" style="color: #CDB05D;font-size:14px;" placeholder='请输入认购金额'/><text>元</text>
+              <input type="digit" maxlength='10' name="money" class="god" style="color: #CDB05D;font-size:14px;" placeholder='请输入认购金额'/><text>亿元</text>
             </view>
         </view>
         <view class="free-toast-buttons">
@@ -87,13 +92,13 @@
 
 
 <!--弹窗-->
-<view class="free-toast {{show?'free-masklayer-show':''}}">
+<view class="free-toast {{show?'free-masklayer-show':''}}" catchtouchmove="preventTouchMove">
      <view class="free-masklayer"/>
      <view class="free-toast-contents">
         <view class="footertop">提交成功</view>
         <view class="footercontent">
-          <view>我公司将在24小时内联系人并确认额度</view>
-          <view>客服电话:<text>0755-28990605</text></view>
+          <view>我公司将在24小时内联系您并确认额度</view>
+          <view>客服电话:<text>{{phone}}</text></view>
         </view>
         <view bindtap="footerqueding" class='footerqueren'>确认</view>
      </view>

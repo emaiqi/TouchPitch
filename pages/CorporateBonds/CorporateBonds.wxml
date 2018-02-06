@@ -6,11 +6,15 @@
     <image style="width:50px;display:block;margin:10% auto 20px;" mode="widthFix" src="../../image/zhanwujieguo.png"></image>
     暂无公司债</view>
     <navigator wx:for="{{company}}" wx:key="{{company}}" class="flex-wrap"
-    url="../release/release?id={{item.id}}">
+    url="../release/release?id={{item.id}}" wx:if="{{item.status!=4 && item.status!=1}}">
       <view class="flex-hd">
         <view>发行人 : {{item.company}}
         <text wx:if="{{item.company_type!=''}}">{{item.company_type}}</text>
         <text wx:if="{{item.funds_type!=''}}" class="{{item.funds_type=='私募债'?'redtext':'bluetext'}}">{{item.funds_type}}</text>
+        <text class="shtext01" wx:if="{{item.status==1}}">审核通过</text>
+        <text class="shtext02"  wx:if="{{item.status==2}}">审核中</text>
+        <text class="shtext03" wx:if="{{item.status==3}}">拒绝审核</text>
+        <text class="shtext04"  wx:if="{{item.status==4}}">已下线</text>
       </view>
         <image src="../../image/dingwei@2x.png"></image>
         <text>{{item.region}}</text>
@@ -19,21 +23,25 @@
         <view class="flex-left">
           <view class="flex">
             <view>评级</view>
-            <view>{{item.rate}}</view>
+            <view wx:if="{{item.rate!=null}}">{{item.rate}}</view>
+             <view wx:if="{{item.rate==null}}">--</view>
           </view>
           <view class="flex">
             <view>收益</view>
-            <view>{{item.interest}}</view>
+            <view wx:if="{{item.interest=='0.0%'}}">--</view>
+            <view wx:if="{{item.interest!='0.0%'}}">{{item.interest}}</view>
           </view>
         </view>
         <view class="flex-right">
           <view class="flex">
             <image mode='widthFix' src="../../image/money@2x.png"></image>
-            <text>总额度{{item.money}}</text>
+            <text wx:if="{{item.money!='0.00'}}">总额度{{item.money}}亿元</text>
+            <text wx:if="{{item.money=='0.00'}}">总额度 --</text>
           </view>
           <view class="flex">
             <image mode='widthFix' src="../../image/rili@2x.png"></image>
-            <text>期限{{item.limit}}</text>
+            <text wx:if="{{item.limit!='0年'}}">期限{{item.limit}}</text>
+            <text wx:if="{{item.limit=='0年'}}">期限 --</text>
           </view>
         </view>
         <navigator url="../release2/release2?id={{item.id}}" class="flex-write">
@@ -43,72 +51,100 @@
       </view>
     </navigator>
 
-    <!--<view class="flex-wrap">
+    <navigator wx:for="{{company}}" wx:key="{{company}}" class="flex-wrap"
+       wx:if="{{item.status==1}}">
       <view class="flex-hd">
-        <view>发行人 : ****有限公司<text>国企</text></view>
+        <view>发行人 : {{item.company}}
+        <text wx:if="{{item.company_type!=''}}">{{item.company_type}}</text>
+        <text wx:if="{{item.funds_type!=''}}" class="{{item.funds_type=='私募债'?'redtext':'bluetext'}}">{{item.funds_type}}</text>
+        <text class="shtext01" wx:if="{{item.status==1}}">审核通过</text>
+        <text class="shtext02"  wx:if="{{item.status==2}}">审核中</text>
+        <text class="shtext03" wx:if="{{item.status==3}}">拒绝审核</text>
+        <text class="shtext04"  wx:if="{{item.status==4}}">已下线</text>
+      </view>
         <image src="../../image/dingwei@2x.png"></image>
-        <text>深圳</text>
+        <text>{{item.region}}</text>
       </view>
       <view class="flex-content">
         <view class="flex-left">
           <view class="flex">
             <view>评级</view>
-            <view>AA+</view>
+            <view wx:if="{{item.rate!=null}}">{{item.rate}}</view>
+             <view wx:if="{{item.rate==null}}">--</view>
           </view>
           <view class="flex">
             <view>收益</view>
-            <view>7.5<text>%</text></view>
+            <view wx:if="{{item.interest=='0.0%'}}">--</view>
+            <view wx:if="{{item.interest!='0.0%'}}">{{item.interest}}</view>
           </view>
         </view>
         <view class="flex-right">
           <view class="flex">
             <image mode='widthFix' src="../../image/money@2x.png"></image>
-            <text>总额度50亿</text>
+            <text wx:if="{{item.money!='0.00'}}">总额度{{item.money}}亿元</text>
+            <text wx:if="{{item.money=='0.00'}}">总额度 --</text>
           </view>
           <view class="flex">
             <image mode='widthFix' src="../../image/rili@2x.png"></image>
-            <text>期限2年</text>
+            <text wx:if="{{item.limit!='0年'}}">期限{{item.limit}}</text>
+            <text wx:if="{{item.limit=='0年'}}">期限 --</text>
           </view>
         </view>
-        <view class="flex-write" bindtap="tiaozhuan">
+        <navigator url="../particulars/particulars?id={{item.id}}" class="flex-write">
           <image src="../../image/bianji@2x.png"></image>
-          <text>编辑</text>
-        </view>
-      </view>
-    </view>
-
-    <view class="flex-wrap">
-      <view class="flex-hd">
-        <view>发行人 : ****有限公司<text>国企</text></view>
-        <image src="../../image/dingwei@2x.png"></image>
-        <text>深圳</text>
-      </view>
-      <view class="flex-content">
-        <view class="flex-left">
-          <view class="flex">
-            <view>评级</view>
-            <view>AA+</view>
-          </view>
-          <view class="flex">
-            <view>收益</view>
-            <view>7.5<text>%</text></view>
-          </view>
-        </view>
-        <view class="flex-right">
-          <view class="flex">
-            <image mode='widthFix' src="../../image/money@2x.png"></image>
-            <text>总额度50亿</text>
-          </view>
-          <view class="flex">
-            <image mode='widthFix' src="../../image/rili@2x.png"></image>
-            <text>期限2年</text>
-          </view>
-        </view>
-        <navigator url="../release/release?id={{company.id}}" class="flex-write">
-          <image src="../../image/bianji@2x.png"></image>
-          <text>编辑</text>
+          <text>查看</text>
         </navigator>
       </view>
-    </view>-->
+    </navigator>
+
+
+        <navigator wx:for="{{company}}" wx:key="{{company}}" class="wancheng"
+         wx:if="{{item.status==4}}">
+      <view class="flex-hd">
+        <view>发行人 : {{item.company}}
+        <text wx:if="{{item.company_type!=''}}">{{item.company_type}}</text>
+        <text wx:if="{{item.funds_type!=''}}" class="{{item.funds_type=='私募债'?'redtext':'bluetext'}}">{{item.funds_type}}</text>
+        <text class="shtext01" wx:if="{{item.status==1}}">审核通过</text>
+        <text class="shtext02"  wx:if="{{item.status==2}}">审核中</text>
+        <text class="shtext03" wx:if="{{item.status==3}}">拒绝审核</text>
+        <text class="shtext04"  wx:if="{{item.status==4}}">已下线</text>
+      </view>
+        <image src="../../image/dingwei@2x.png"></image>
+        <text>{{item.region}}</text>
+      </view>
+      <view class="flex-content">
+        <view class="flex-left">
+          <view class="flex">
+            <view>评级</view>
+            <view wx:if="{{item.rate!=null}}">{{item.rate}}</view>
+             <view wx:if="{{item.rate==null}}">--</view>
+          </view>
+          <view class="flex">
+            <view>收益</view>
+            <view wx:if="{{item.interest=='0.0%'}}">--</view>
+            <view wx:if="{{item.interest!='0.0%'}}">{{item.interest}}</view>
+          </view>
+        </view>
+        <view class="flex-right">
+          <view class="flex">
+            <image mode='widthFix' src="../../image/money@2x.png"></image>
+            <text wx:if="{{item.money!='0.00'}}">总额度{{item.money}}亿元</text>
+            <text wx:if="{{item.money=='0.00'}}">总额度 --</text>
+          </view>
+          <view class="flex">
+            <image mode='widthFix' src="../../image/rili@2x.png"></image>
+            <text wx:if="{{item.limit!='0年'}}">期限{{item.limit}}</text>
+            <text wx:if="{{item.limit=='0年'}}">期限 --</text>
+          </view>
+        </view>
+        <navigator url="../particulars/particulars?id={{item.id}}" class="flex-write">
+          <image src="../../image/bianji@2x.png"></image>
+          <text>查看</text>
+        </navigator>
+      </view>
+    </navigator>
+
+
   </view>
+  <view style='width：100%;text-align: center;color:#ccc;font-size:14px;padding:2% 0;'>{{more}}</view>
 </view>

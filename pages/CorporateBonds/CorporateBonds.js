@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    page: 1, 
+    company:[]
   },
   tiaozhuan:function(){
     wx.navigateTo({
@@ -30,7 +31,8 @@ Page({
       success: res => {
        console.log(res)
       that.setData({
-        company:res.data.data
+        company:res.data.data,
+        last_page: res.data.last_page
       })
       }
     })
@@ -92,7 +94,36 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    console.log(this.data.page)
+    console.log('我上上拉')
+    var that = this
+    that.setData({
+      more: '加载更多……',
+      page: this.data.page + 1,
+    })
+    console.log('page:' + this.data.page)
+    if (this.data.page <= this.data.last_page){
+      wx.request({
+        url: app.globalData.my_funds,
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {
+          user_id: app.globalData.user_id,
+          page: this.data.page,
+        },
+        success: function (res) {
+          that.setData({
+            company: that.data.company.concat(res.data.data)
+          })
+        }
+      })
+    }else{
+        that.setData({
+          more: '已加载全部'
+        })
+    }
   },
 
   /**

@@ -27,10 +27,9 @@ Page({
       success: function (res) {
         console.log(res)
         that.setData({
-          guanyv:res.data.content
+          article: WxParse.wxParse('article', 'html', res.data.content, that, 5)
         })
-       var article= res.data.content;
-        WxParse.wxParse('article', 'html', article, that, 0);
+       
       }
     })
   },
@@ -67,7 +66,26 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    var that = this
+    wx.request({
+      url: app.globalData.about,
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+
+      },
+      success: function (res) {
+        wx.stopPullDownRefresh()
+        console.log(res)
+        that.setData({
+          guanyv: res.data.content
+        })
+        var article = res.data.content;
+        WxParse.wxParse('article', 'html', article, that, 0);
+      }
+    })
   },
 
   /**

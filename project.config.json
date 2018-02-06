@@ -8,7 +8,7 @@
 		"newFeature": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.5.4",
+	"libVersion": "1.9.1",
 	"appid": "wxf6a995507455d41e",
 	"projectname": "zhanglong",
 	"condition": {

@@ -16,7 +16,7 @@
   flex-flow: row;
 }
 .index_contents .flex-wrap .flex-hd>view:nth-child(1){
-  width:50%;
+  width:74%;
   margin-top:12px;
   margin-left:5.3%;
   font-family: PingFangSC-Regular;
@@ -35,10 +35,9 @@
 }
 .index_contents .flex-wrap .flex-hd image{
   width:9px;
-  display: inline-block;
   height:11.3px;
   margin-top:13.7px;
-  margin-left:30%;
+  border:1xp solid red;
 }
 .index_contents .flex-wrap .flex-hd>text{
   font-family: PingFangSC-Medium;
@@ -128,3 +127,124 @@
   height:15.9px;
   margin:13.2px auto 5px;
 }
+
+
+/*认购完成*/
+.index_contents .wancheng{
+  width:100%;
+  background: #fff;
+  margin-bottom:2px;
+  position: relative;
+}
+.index_contents .wancheng .flex-hd{
+  width:100%;
+  height:40px;
+  display: flex;
+  flex-flow: row;
+  color:#999;
+}
+.index_contents .wancheng .flex-hd>view:nth-child(1){
+  width:50%;
+  margin-top:12px;
+  margin-left:5.3%;
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color:#999;
+  letter-spacing: 0;
+}
+.index_contents .wancheng .flex-hd view>text:nth-child(1){
+  background: #5A8DCC;
+  font-family: PingFangSC-Regular;
+  font-size: 8px;
+  color:#999;
+  letter-spacing: 0;
+  margin-left:3px;
+  padding:2px;
+}
+.index_contents .wancheng .flex-hd image{
+  width:9px;
+  display: inline-block;
+  height:11.3px;
+  margin-top:13.7px;
+  margin-left:28%;
+}
+.index_contents .wancheng .flex-hd>text{
+  font-family: PingFangSC-Medium;
+  font-size: 12px;
+  color:#999;
+  letter-spacing: 0;
+  margin-top:10px;
+  margin-left:3px;
+}
+.index_contents .wancheng .flex-content{
+  width:100%;
+  height:70px;
+  padding-top:7px;
+  display: flex;
+  flex-flow: row;
+}
+.index_contents .wancheng .flex-content .flex-left{
+  width:60%;
+  display: flex;
+  flex-flow: row;
+}
+.index_contents .wancheng .flex-content .flex-left .flex:nth-child(1){
+  margin-left:18%;
+}
+.index_contents .wancheng .flex-content .flex-left .flex:nth-child(2){
+  margin-left:7%;
+}
+.index_contents .wancheng .flex-content .flex-left .flex>view:nth-child(1){
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 0;
+  margin-bottom:2px;
+}
+.index_contents .wancheng .flex-content .flex-left .flex>view:nth-child(2){
+  font-family: Helvetica;
+  font-size: 28px;
+  color: #999;
+  letter-spacing: 0;
+}
+.index_contents .wancheng .flex-content .flex-left .flex view>text{
+  display: inline-block;
+  font-family: Helvetica;
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 0;
+  margin-left:2px;
+}
+.index_contents .wancheng .flex-content .flex-right{
+  width:39%;
+  height:46px;
+  display: flex;
+  flex-flow: column;
+  border-left:1px solid #E4E4E4;
+}
+.index_contents .wancheng .flex-content .flex-right .flex{
+  width:100%;
+}
+.index_contents .wancheng .flex-content .flex-right .flex image{
+  width:13px;
+  height:13px;
+  display: inline-block;
+  margin-left:15px;
+}
+.index_contents .wancheng .flex-content .flex-right .flex text{
+  width:73px;
+  height:20px;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #999;
+  letter-spacing: 0;
+}
+.index_contents .wancheng .flex-img{
+  width:80px;height:80px;
+  position:absolute;
+  z-index:10;right:0px;top:0px;
+}
+.index_contents .wancheng .flex-img image{
+  width:100px;
+}
+/**********************************/

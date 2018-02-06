@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    textareahidden: true,
 	  disabled:false,
     /**显示不显示 */
     chengshiopen: 0,
@@ -34,6 +35,31 @@ Page({
     cycle_id:0,
     funds_rate_id:0,
   },
+
+
+  /**
+ * textarea输入失去焦点时出发事件
+ */
+  textareaInput: function (e) {
+    console.log(e.detail.value)
+    var that = this
+    that.setData({
+      measures: e.detail.value,
+      textareahidden: true,
+    })
+  },
+  textareaFocus: function (e) {
+    console.log(e.detail.value)
+    var that = this
+    that.setData({
+      textareahidden: false,
+    })
+  },
+
+
+
+
+
   /**侧面picker */
   toggleDialogRight() {
     this.setData({
@@ -304,10 +330,30 @@ Page({
     console.log(e.detail.value)
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;  
     if (e.detail.value.phone == '' || e.detail.value.company == '' ||e.detail.value.person == '' || e.detail.value.sms_code == ''){
+      if (e.detail.value.phone == '') {
         wx.showModal({
           title: '提示',
-          content: '必填项必须填写完整，请检查是否有遗漏。',
+          content: '请输入手机号',
         })
+      }
+      if (e.detail.value.company == '') {
+        wx.showModal({
+          title: '提示',
+          content: '请输入发行人简称',
+        })
+      }
+      if (e.detail.value.person == '') {
+        wx.showModal({
+          title: '提示',
+          content: '请输入联系人姓名',
+        })
+      }
+      if (e.detail.value.sms_code == '') {
+        wx.showModal({
+          title: '提示',
+          content: '请输入验证码',
+        })
+      }
     }else{
       if (!myreg.test(e.detail.value.phone) || e.detail.value.phone.length!=11){
         wx.showModal({
@@ -315,29 +361,7 @@ Page({
           content: '你输入的手机号有误',
         })
       }else{
-        var card = wx.getStorageSync('card3');
-        wx.uploadFile({
-          url: app.globalData.upload,
-          filePath: card,
-          name: 'img',
-          success: function (res) {
-            console.log('上传照片：')
-            console.log(res)
-            console.log(res.data)
-            console.log(JSON.parse(res.data).img)
-            var imageurl = JSON.parse(res.data).img
-            wx.setStorage({ key: "imageUrl", data: imageurl })
-          }
-        })
-        var imageUrl = wx.getStorageSync('imageUrl')
-        console.log(this.data.region_id)
-        console.log(this.data.zhouqiid)
-        console.log(this.data.zhaiquanid)
-        console.log(this.data.zhutiid)
-        console.log(this.data.region_id2)
-        console.log(this.data.zhouqiid2)
-        console.log(this.data.zhaiquanid2)
-        console.log(this.data.zhutiid2)
+        var imageUrl = wx.getStorageSync('imageUrl2')
         if (this.data.region_id==null){
           var chengshiid = this.data.region_id2
         }else{
@@ -371,24 +395,25 @@ Page({
             region_id: chengshiid,
             company: e.detail.value.company,
             phone: e.detail.value.phone,
-            money: e.detail.value.money * 100000000,
+            money: e.detail.value.money,
             limit: e.detail.value.limit,
             interest: e.detail.value.interest,
             cycle_id: zhouqiid,
             funds_rate_id: zhaiquanid,
             main_rate_id:zhutiid,
             issue_time: e.detail.value.issue_time,
-            measures: e.detail.value.measures,
+            risk: e.detail.value.measures,
             funds_rate_sort: this.data.zhaiquansort,
             sms_code: e.detail.value.sms_code,
             funds_id: this.data.fund_id,
           },
           success: res => {
+            wx.setStorage({ key: "card3", data: '' })
             console.log(res)
             if (res.data.code == 200) {
               wx.showModal({
                 title: '提示',
-                content: '发布成功，等待后台审核',
+                content: '您修改的信息已提交成功，请等待审核，谢谢。',
                 success: function () {
                   wx.navigateTo({
                     url: '../CorporateBonds/CorporateBonds',
@@ -419,7 +444,19 @@ Page({
         that.setData({
           tempFilePaths: res.tempFilePaths
         })
-        wx.setStorage({ key: "card3", data: tempFilePaths[0] })
+        wx.uploadFile({
+          url: app.globalData.upload,
+          filePath: tempFilePaths[0],
+          name: 'img',
+          success: function (res) {
+            console.log('上传照片：')
+            console.log(res)
+            console.log(res.data)
+            console.log(JSON.parse(res.data).img)
+            var imageurl = JSON.parse(res.data).img
+            wx.setStorage({ key: "imageUrl2", data: imageurl })
+          }
+        })
       }
     })
   },
@@ -522,7 +559,7 @@ Page({
           tempFilePaths: res.data.card,
           date:res.data.issue_time,
 
-
+          measures: res.data.measures,
 
           region_id2: res.data.region_id,
           zhutiid2: res.data.main_rate_id,

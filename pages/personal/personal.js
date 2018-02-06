@@ -9,7 +9,7 @@ Page({
     list:[{
       url:'../CorporateBonds/CorporateBonds',
       src:'../../image/gongsizhai1.png',
-      name:'我的公司债'
+      name:'我的资产'
     },
       {
         url: '../BusinessCard/BusinessCard',

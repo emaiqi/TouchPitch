@@ -225,17 +225,31 @@
 }
 
 /*担保*/
+.danbao{
+  width:100%;margin-bottom:170px;position: relative;
+}
 .danbaocuoshi{
-  width:100%;
-  margin-top:10px;
+  width:96%;
   height:111px;
   background:#fff;
-  padding:13px 10px;
+  padding:13px 2%;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #7E899D;
   letter-spacing: 0;
+  position: absolute;top:0px;
+  z-index: 12; opacity:1;
 }
+.textarea{
+  position: absolute;top:0px;
+  z-index: 10;  width:96%;
+  height:111px;
+  background:#fff;  
+  font-size: 14px;
+  color: #7E899D;
+  padding:13px 2%;
+}
+
 
 /*上传图片*/
 .shangchuan{
@@ -353,8 +367,9 @@ radio-group label .free-text{
   background: white;
   transform: translateX(150%);
   transition: all 0.4s ease;
-  z-index: 11;
+  z-index: 110;
   padding-left:8px;
+  padding-bottom:30px;
 }
 .free-masklayer-show-right .free-dialog-content-right {
   transform: translateX(0);
@@ -363,11 +378,17 @@ radio-group label .free-text{
   display: block;
 }
 .free-pickerRight-buttons{
-  width:100%;
+  width:248px;
   height:40px;
   position:fixed;
   bottom:0px;
-  left:0;
+  right:0px;
+  z-index: 1000;
+  transform: translateX(150%);
+  transition: all 0.4s ease;
+}
+.free-masklayer-show-rightbutton{
+    transform: translateX(0);
 }
 .free-pickerRight-buttons>button{
   display: inline-block;
@@ -402,14 +423,14 @@ radio-group label .free-text{
 /*发送验证码*/
 .fasong{
   display: inline-block;
-  width:30%;
+  width:23%;
   height:45px;
   line-height: 45px;
   background: #CDB05D;
   color:#fff;
   text-align: center;
   font-family: PingFangSC-Regular;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 0;
   border-radius: 0px;
   padding:0px;
